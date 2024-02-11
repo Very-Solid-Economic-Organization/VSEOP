@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DbModels\Countries\" />
-    <Folder Include="DbModels\Commodity\" />
-    <Folder Include="DbModels\RegionStore\" />
-    <Folder Include="DbModels\Region\" />
+    <None Remove="DbModels\Factories\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbModels\Commodities\" />
   </ItemGroup>
 
 </Project>

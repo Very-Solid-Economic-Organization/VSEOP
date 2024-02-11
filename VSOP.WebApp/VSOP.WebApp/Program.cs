@@ -1,4 +1,4 @@
-using VSOP.WebApp.Client.Pages;
+using VSOP.Persistence;
 using VSOP.WebApp.Components;
 
 namespace VSOP.WebApp
@@ -9,6 +9,10 @@ namespace VSOP.WebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            #region SolutionDI's
+            builder.Services.AddPersistence(builder.Configuration);
+            #endregion
+
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
@@ -18,6 +22,14 @@ namespace VSOP.WebApp
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI(config =>
+                {
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    config.RoutePrefix = "docs";
+                });
+
+                app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
             }
             else

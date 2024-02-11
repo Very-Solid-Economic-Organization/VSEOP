@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace VSOP.Models.Primitives.Results;
+﻿namespace VSOP.Models.Primitives.Results;
 
 /// <summary>
 /// Результат какой-либо операции, с информацией о успешности с возможным значением или ошибкой.
