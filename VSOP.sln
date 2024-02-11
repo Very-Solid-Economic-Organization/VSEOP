@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{EC169DD6-8BF9-4477-A5E1-17705A2FCA3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSOP.Application", "VSOP.Application\VSOP.Application.csproj", "{AFE6A06D-235D-4861-8E3D-67C5BE7D6391}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A} = {4A9ADD9A-4EC2-4651-B16E-3F46FC07165A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSOP.Persistence", "VSOP.Persistence\VSOP.Persistence.csproj", "{14AD24EE-C739-43AA-AA0D-9A3F815E9C6E}"
 EndProject
@@ -18,8 +21,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSOP.WebApp.Client", "VSOP.WebApp\VSOP.WebApp.Client\VSOP.WebApp.Client.csproj", "{6C9E427B-C5AE-4D5E-9822-ADEF39AE364A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSOP.Domain", "VSOP.Domain\VSOP.Domain.csproj", "{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSOP.Models", "VSOP.Models\VSOP.Models.csproj", "{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +48,6 @@ Global
 		{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,7 +58,6 @@ Global
 		{CF5C7445-5CBE-4120-8BFE-7C9C151D0029} = {EC169DD6-8BF9-4477-A5E1-17705A2FCA3C}
 		{6C9E427B-C5AE-4D5E-9822-ADEF39AE364A} = {EC169DD6-8BF9-4477-A5E1-17705A2FCA3C}
 		{4A9ADD9A-4EC2-4651-B16E-3F46FC07165A} = {BFBA4B21-82C4-4411-8D28-8823F57F2780}
-		{506217F3-E3B0-4F4F-8E2E-44B2BAD986E7} = {BFBA4B21-82C4-4411-8D28-8823F57F2780}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {529F0549-5521-4FB5-92AF-2DE5225798BD}

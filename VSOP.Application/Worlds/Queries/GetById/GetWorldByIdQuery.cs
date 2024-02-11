@@ -1,5 +1,5 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Models.DbModels.Worlds;
+using VSOP.Domain.DbModels.Worlds;
 
 namespace VSOP.Application.Worlds.Queries.GetById;
 

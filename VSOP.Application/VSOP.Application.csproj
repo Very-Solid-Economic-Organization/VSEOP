@@ -25,4 +25,8 @@
     <Folder Include="Worlds\Commads\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VSOP.Domain\VSOP.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

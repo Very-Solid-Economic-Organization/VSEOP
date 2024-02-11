@@ -1,4 +1,4 @@
-﻿using VSOP.Models.Primitives.Results;
+﻿using VSOP.Domain.Primitives.Results;
 
 namespace FSOP.Application.Interfaces
 {

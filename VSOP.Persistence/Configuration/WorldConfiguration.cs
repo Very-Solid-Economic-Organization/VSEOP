@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VSOP.Models.DbModels.Regions;
-using VSOP.Models.DbModels.Worlds;
+using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Worlds;
 namespace VSOP.Persistence.Configuration;
 
 internal class WorldConfiguration : IEntityTypeConfiguration<World>

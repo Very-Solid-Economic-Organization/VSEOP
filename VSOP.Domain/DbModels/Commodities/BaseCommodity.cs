@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Models.Primitives;
+using VSOP.Domain.Primitives;
 
-namespace VSOP.Models.DbModels.Comodities
+namespace VSOP.Domain.DbModels.Comodities
 {
     public class BaseCommodity : Entity, IEquatable<BaseCommodity>
     {

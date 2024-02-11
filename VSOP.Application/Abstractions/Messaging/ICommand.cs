@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using VSOP.Models.Primitives.Results;
+using VSOP.Domain.Primitives.Results;
 
 namespace VSOP.Application.Abstractions.Messaging;
 

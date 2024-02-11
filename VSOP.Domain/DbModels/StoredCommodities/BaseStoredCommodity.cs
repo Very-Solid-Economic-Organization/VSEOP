@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Models.DbModels.Countries;
-using VSOP.Models.DbModels.Enums;
-using VSOP.Models.DbModels.Processes;
-using VSOP.Models.Primitives;
+using VSOP.Domain.DbModels.Countries;
+using VSOP.Domain.DbModels.Enums;
+using VSOP.Domain.DbModels.Processes;
+using VSOP.Domain.Primitives;
 
-namespace VSOP.Models.DbModels.StoredCommodities
+namespace VSOP.Domain.DbModels.StoredCommodities
 {
     internal class BaseStoredCommodity : Entity, IEquatable<BaseStoredCommodity>
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Models.DbModels.Worlds;
+using VSOP.Domain.DbModels.Worlds;
 
 namespace VSOP.Persistence.Repositories;
 

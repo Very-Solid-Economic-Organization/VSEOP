@@ -1,4 +1,4 @@
-﻿namespace VSOP.Models.Primitives;
+﻿namespace VSOP.Domain.Primitives;
 
 /// <summary>Абстрактное представление данных в бд</summary>
 public abstract class Entity

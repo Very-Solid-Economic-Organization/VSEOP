@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VSOP.Application\VSOP.Application.csproj" />
-    <ProjectReference Include="..\VSOP.Models\VSOP.Models.csproj" />
   </ItemGroup>
 
 </Project>

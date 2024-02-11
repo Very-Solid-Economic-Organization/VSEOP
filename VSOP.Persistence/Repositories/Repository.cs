@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Models.Primitives;
+using VSOP.Domain.Primitives;
 
 namespace VSOP.Persistence.Repositories;
 

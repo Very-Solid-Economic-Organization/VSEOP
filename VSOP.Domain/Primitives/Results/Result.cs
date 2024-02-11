@@ -1,4 +1,4 @@
-﻿namespace VSOP.Models.Primitives.Results;
+﻿namespace VSOP.Domain.Primitives.Results;
 
 /// <summary>
 /// Результат какой-либо операции, с информацией о успешности с возможным значением или ошибкой.

@@ -1,8 +1,8 @@
-﻿using VSOP.Models.DbModels.Countries;
-using VSOP.Models.DbModels.StoredCommodities;
-using VSOP.Models.Primitives;
+﻿using VSOP.Domain.DbModels.Countries;
+using VSOP.Domain.DbModels.StoredCommodities;
+using VSOP.Domain.Primitives;
 
-namespace VSOP.Models.DbModels.Stories
+namespace VSOP.Domain.DbModels.Stories
 {
     internal class RegionStore : Entity, IEquatable<RegionStore>
     {

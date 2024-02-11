@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace VSOP.Models.Primitives;
+namespace VSOP.Domain.Primitives;
 
 /// <summary>Объект ошибки</summary>
 public class Error

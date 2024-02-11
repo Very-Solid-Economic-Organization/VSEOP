@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Models.DbModels.Comodities;
-using VSOP.Models.DbModels.Countries;
-using VSOP.Models.Primitives;
+using VSOP.Domain.DbModels.Comodities;
+using VSOP.Domain.DbModels.Countries;
+using VSOP.Domain.Primitives;
 
-namespace VSOP.Models.DbModels.Processes
+namespace VSOP.Domain.DbModels.Processes
 {
     public class BaseProcess : Entity, IEquatable<BaseProcess>
     {

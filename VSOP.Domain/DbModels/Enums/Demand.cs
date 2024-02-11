@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VSOP.Models.DbModels.Enums
+namespace VSOP.Domain.DbModels.Enums
 {
     enum Demand
     {
