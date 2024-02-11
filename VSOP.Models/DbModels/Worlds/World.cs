@@ -17,7 +17,7 @@ public class World : Entity
 
     //public Guid MasterId { get; private init; }
 
-    public HashSet<Country> Countries { get; private set; }
+    public HashSet<Country> Countries { get; private set; } = [];
 
     public static World Create(string name, Guid masterId)
     {
@@ -33,20 +33,5 @@ public class World : Entity
     public bool Equals(Country? other)
     {
         return Id == other?.Id;
-    }
-
-    public override bool Equals(object? otherObj)
-    {
-        return otherObj is Country other && Id == other.Id;
-    }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
-    }
-
-    public override string ToString()
-    {
-        return $"{Id} | {Name}";
     }
 }
