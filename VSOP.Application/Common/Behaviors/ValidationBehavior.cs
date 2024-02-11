@@ -1,40 +1,59 @@
-﻿//using FSOP.Application.Interfaces;
-//using MediatR;
-//using VSOP.Domain.Primitives.Results;
+﻿using FluentValidation;
+using FSOP.Application.Interfaces;
+using MediatR;
+using VSOP.Domain.Primitives;
+using VSOP.Domain.Primitives.Results;
+using VSOP.Domain.Primitives.Validation;
 
-//namespace VSOP.Application.Common.Behaviors;
+namespace VSOP.Application.Common.Behaviors;
 
-//public class ValidationBehaviour<TRequest, TResponse>
-//        : IPipelineBehavior<TRequest, TResponse>
-//        where TRequest : IRequest<TResponse>
-//        where TResponse : Result
-//{
-//    private readonly IValidationHandler<TRequest>? validationHandler;
+public class ValidationPipelineBehavior<TRequest, TResponse>
+    : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+    where TResponse : Result
+{
+    private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-//    public ValidationBehaviour() { }
-//    public ValidationBehaviour(IValidationHandler<TRequest> validationHandler)
-//    {
-//        this.validationHandler = validationHandler;
-//    }
-//    public async Task<TResponse> Handle(TRequest request,
-//        RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-//    {
-        
-//        var requestName = request.GetType();
+    public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators) =>
+        _validators = validators;
 
-//        if (validationHandler == null)
-//            return await next();
 
-//        var result = await validationHandler.Validate(request);
-//        if (!result.IsSuccess)
-//        {
-//            //Log.Warning("Validation failed for {Request}. Error: {Error}", requestName, result.Error);
-//            return TResponse.Failure();
-//        }
-//        else
-//        {
-//            //Log.Information("Validation successful for {Request}.", requestName);
-//            return await next();
-//        }
-//    }
-//}
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
+    {
+        if (!_validators.Any())
+            return await next();
+
+        Error[] errors = _validators
+            .Select(validator => validator.Validate(request))
+            .SelectMany(validationResult => validationResult.Errors)
+            .Where(validationFailure => validationFailure is not null)
+            .Select(failure => new Error(
+                System.Net.HttpStatusCode.UnprocessableContent,
+                failure.ErrorMessage))
+            .Distinct()
+            .ToArray();
+
+        if (errors.Any())
+            return CreateValidationResult<TResponse>(errors);
+
+        return await next();
+    }
+
+    static TResult CreateValidationResult<TResult>(Error[] errors)
+        where TResult : Result
+    {
+        if (typeof(TResult) == typeof(Result))
+            return (ValidationResult.WithErrors(errors) as TResult)!;
+
+        object validationResult = typeof(ValidationResult<>)
+             .GetGenericTypeDefinition()
+             .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
+             .GetMethod(nameof(ValidationResult.WithErrors))!
+             .Invoke(null, new object?[] { errors })!;
+
+        return (TResult)validationResult;
+    }
+}
