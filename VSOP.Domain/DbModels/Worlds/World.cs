@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Comodities;
 using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.Primitives;
 
@@ -17,6 +18,8 @@ public class World : Entity
     //public Guid MasterId { get; private init; } //TODO: implement
 
     public HashSet<Country> Countries { get; private set; } = new();
+
+    public HashSet<Commodity> Commodities { get; private set; } = new();
 
     public static World Create(string name/*, Guid masterId*/)
     {

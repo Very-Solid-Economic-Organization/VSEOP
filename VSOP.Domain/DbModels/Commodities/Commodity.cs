@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Comodities;
@@ -10,7 +11,10 @@ public class Commodity : Entity, IEquatable<Commodity>
         Name = name;
     }
 
-    public string Name { get; private init; }
+    public string Name { get; private set; }
+
+    public Guid WorldId { get; private init; }
+    public World World { get; private set; }
 
     public static Commodity Create(string name)
     {
