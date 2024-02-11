@@ -1,4 +1,5 @@
-﻿using VSOP.Models.DbModels.Regions;
+﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Models.DbModels.Regions;
 using VSOP.Models.Primitives;
 
 namespace VSOP.Models.DbModels.Countries;
@@ -19,26 +20,16 @@ public class Country : Entity, IEquatable<Country>
 
     public static Country Create(string name, Guid worldId)
     {
+        if (string.IsNullOrEmpty(name))
+            throw new ValidationException("Name can't be null or empty");
+
+        if (worldId == Guid.Empty)
+            throw new ValidationException("World Id can't be empty");
+
         return new(Guid.NewGuid(), name, worldId);
     }
-
     public bool Equals(Country? other)
     {
         return Id == other?.Id;
-    }
-
-    public override bool Equals(object? otherObj)
-    {
-        return otherObj is Country other && Id == other.Id;
-    }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
-    }
-
-    public override string ToString()
-    {
-        return $"{Id} | {Name}";
     }
 }

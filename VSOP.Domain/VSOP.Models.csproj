@@ -10,8 +10,4 @@
     <None Remove="DbModels\Factories\NewFile1.txt" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DbModels\Commodities\" />
-  </ItemGroup>
-
 </Project>

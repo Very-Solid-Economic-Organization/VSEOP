@@ -14,4 +14,14 @@ public abstract class Entity
 
     /// <summary>Ид сущности</summary>
     public Guid Id { get; protected init; }
+
+    public override bool Equals(object? otherObj)
+    {
+        return otherObj is Entity other && Id == other.Id;
+    }
+
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
+    }
 }
