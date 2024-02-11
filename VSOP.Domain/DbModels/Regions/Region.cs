@@ -22,6 +22,8 @@ public class Region : Entity, IEquatable<Region>
 
     public Guid RegionStoreId { get; private init; }
 
+    public RegionStore RegionStore { get; private set; }
+
     public List<Producer> Producers { get; private set; } = new();
 
     public static Region Create(string name, Guid countryId, Guid regionStoreId)

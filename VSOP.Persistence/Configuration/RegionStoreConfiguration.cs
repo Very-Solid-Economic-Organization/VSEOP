@@ -13,5 +13,9 @@ internal class RegionStoreConfiguration : IEntityTypeConfiguration<RegionStore>
         builder.HasMany(sc => sc.StoredCommodities)
             .WithOne()
             .HasForeignKey(sc => sc.CommodityId);
+
+        builder.HasOne<Region>()
+            .WithOne()
+            .HasForeignKey(rs => rs.)
     }
 }

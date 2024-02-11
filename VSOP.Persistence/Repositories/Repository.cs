@@ -3,7 +3,7 @@ using VSOP.Domain.Primitives;
 
 namespace VSOP.Persistence.Repositories;
 
-public abstract class Repository<TEntity> where TEntity : Entity
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 {
     protected readonly DbSet<TEntity> _context;
 

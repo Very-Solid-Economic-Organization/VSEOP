@@ -5,7 +5,7 @@ namespace VSOP.Domain.DbModels.Regions;
 
 public class RegionStore : Entity, IEquatable<RegionStore>
 {
-    public RegionStore(Guid id, Guid regionId) : base(id)
+    private RegionStore(Guid id, Guid regionId) : base(id)
     {
         RegionId = regionId;
     }
