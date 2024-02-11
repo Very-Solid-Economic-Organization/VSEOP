@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VSOP.Application.Data;
+using VSOP.Persistence.Repositories;
 
 namespace VSOP.Persistence;
 
@@ -18,9 +20,10 @@ public static class DependencyInjection
         });
 
         #region Repositories
+        services.AddScoped<IWorldRepository, WorldRepository>();
         #endregion
 
-        //services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 }

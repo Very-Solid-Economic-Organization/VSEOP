@@ -9,6 +9,8 @@ namespace VSOP.WebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddControllers();
+
             #region SolutionDI's
             builder.Services.AddPersistence(builder.Configuration);
             #endregion
@@ -17,19 +19,20 @@ namespace VSOP.WebApp
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
 
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(config =>
-                {
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                    config.RoutePrefix = "docs";
-                });
-
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI();
+
                 app.UseWebAssemblyDebugging();
             }
             else
@@ -43,6 +46,8 @@ namespace VSOP.WebApp
 
             app.UseStaticFiles();
             app.UseAntiforgery();
+
+            app.MapControllers();
 
             app.MapRazorComponents<App>()
                 .AddInteractiveWebAssemblyRenderMode()
