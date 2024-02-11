@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.Primitives;
 
@@ -16,6 +17,8 @@ public class Region : Entity, IEquatable<Region>
     public string Name { get; private set; }
 
     public Guid CountryId { get; private set; }
+
+    public Country Country { get; private set; }
 
     public Guid RegionStoreId { get; private init; }
 

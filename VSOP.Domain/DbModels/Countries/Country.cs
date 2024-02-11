@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Countries;
@@ -16,6 +17,8 @@ public class Country : Entity, IEquatable<Country>
 
     public Guid WorldId { get; private init; }
 
+    public World World { get; private set; }
+
     public HashSet<Region> Regions { get; private set; } = [];
 
     public static Country Create(string name, Guid worldId)
@@ -28,6 +31,7 @@ public class Country : Entity, IEquatable<Country>
 
         return new(Guid.NewGuid(), name, worldId);
     }
+
     public bool Equals(Country? other)
     {
         return Id == other?.Id;

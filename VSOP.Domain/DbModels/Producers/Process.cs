@@ -6,29 +6,31 @@ namespace VSOP.Domain.DbModels.Producers;
 
 public class Process : Entity, IEquatable<Process>
 {
-    public Process(Guid id, Guid factoryId, int processesCount) : base(id)
+    public Process(Guid id, Guid producerId, int processesCount) : base(id)
     {
-        FactoryId = factoryId;
+        ProducerId = producerId;
         ProcessesCount = processesCount;
     }
 
     public int ProcessesCount { get; set; } = 0;
 
-    public Guid FactoryId { get; private init; }
+    public Guid ProducerId { get; private init; }
 
-    public List<Commodity> ConsumingCommodities { get; set; } = new();
+    public Producer Producer { get; private set; }
 
-    public List<Commodity> ProducedCommodities { get; set; } = new();
+    public HashSet<ProcessedCommodity> ConsumingCommodities { get; set; } = new(); //TODO : не тот тип, переделать
 
-    public static Process Create(Guid factoryId, int processesCount)
+    public HashSet<ProcessedCommodity> ProducedCommodities { get; set; } = new();
+
+    public static Process Create(Guid producerId, int processesCount)
     {
-        if (factoryId == Guid.Empty)
-            throw new ValidationException("Factory Id can't be empty");
+        if (producerId == Guid.Empty)
+            throw new ValidationException("Producer Id can't be empty");
 
         if (processesCount < 0)
             throw new ValidationException("ProcessesCount can't be negative");
 
-        return new(Guid.NewGuid(), factoryId, processesCount);
+        return new(Guid.NewGuid(), producerId, processesCount);
     }
 
     public bool Equals(Process? other)

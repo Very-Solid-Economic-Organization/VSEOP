@@ -2,11 +2,11 @@
 using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Stores;
+namespace VSOP.Domain.DbModels.Regions;
 
 public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 {
-    public StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price) : base(id)
+    public StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price) : base(id) //TODO: добавить Demand
     {
         CommodityId = commodityId;
         Quantity = quantity;
@@ -37,7 +37,6 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 
     private static bool IsNegative(float value) =>
          value < 0;
-
 
     public bool Equals(StoredCommodity? other)
     {
