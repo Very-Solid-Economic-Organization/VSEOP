@@ -22,7 +22,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Worlds\Commads\" />
+    <Folder Include="Worlds\Commads\RemoveWorld\" />
+    <Folder Include="Worlds\Commads\UpdateWorld\" />
   </ItemGroup>
 
   <ItemGroup>

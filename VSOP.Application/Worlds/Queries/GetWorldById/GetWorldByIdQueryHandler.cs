@@ -6,9 +6,9 @@ using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 using VSOP.Persistence.Repositories;
 
-namespace VSOP.Application.Worlds.Queries.GetById;
+namespace VSOP.Application.Worlds.Queries.GetWorldById;
 
-internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWroldByIdWithCountriesQuery, World>
+internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWorldByIdQuery, World>
 {
     private readonly IWorldRepository _worldRepository;
 
@@ -17,7 +17,7 @@ internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWroldByIdWithC
         _worldRepository = worldRepository;
     }
 
-    public async Task<Result<World>> Handle(GetWroldByIdWithCountriesQuery request, CancellationToken cancellationToken)
+    public async Task<Result<World>> Handle(GetWorldByIdQuery request, CancellationToken cancellationToken)
     {
         var result = _worldRepository.GetWorldWithCountiesByIdAsync(request.Id);
         if (result is null || !result.Any())
