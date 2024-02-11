@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DbModels\Countries\" />
+    <Folder Include="DbModels\Commodity\" />
+    <Folder Include="DbModels\RegionStore\" />
+    <Folder Include="DbModels\Region\" />
+  </ItemGroup>
+
 </Project>
