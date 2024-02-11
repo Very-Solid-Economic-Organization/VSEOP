@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace VSOP.Domain.DbModels.Enums;
 
-namespace VSOP.Domain.DbModels.Enums
+public enum Demand
 {
-    enum Demand
-    {
-    }
 }

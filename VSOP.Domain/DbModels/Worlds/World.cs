@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.Primitives;
-using VSOP.Domain.DbModels.Countries;
-using VSOP.Domain.DbModels.Regions;
-using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Worlds;
 
 public class World : Entity
 {
-    private World(Guid id, string name /*, Guid masterId*/) : base(id)
+    private World(Guid id, string name/*, Guid masterId*/) : base(id)
     {
         Name = name;
         //MasterId = masterId;
@@ -17,17 +14,17 @@ public class World : Entity
 
     public string Name { get; private set; }
 
-    //public Guid MasterId { get; private init; }
+    //public Guid MasterId { get; private init; } //TODO: implement
 
-    public HashSet<Country> Countries { get; private set; } = [];
+    public HashSet<Country> Countries { get; private set; } = new();
 
-    public static World Create(string name, Guid masterId)
+    public static World Create(string name/*, Guid masterId*/)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name property can't be null or empty");
 
-        if (masterId == Guid.Empty)
-            throw new ValidationException("Game master Id can't be empty");
+        //if (masterId == Guid.Empty)
+        //    throw new ValidationException("Game master Id can't be empty");
 
         return new World(Guid.NewGuid(), name/*, masterId*/);
     }

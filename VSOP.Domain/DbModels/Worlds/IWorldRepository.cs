@@ -1,9 +1,8 @@
 ﻿using VSOP.Domain.DbModels.Worlds;
 
-namespace VSOP.Persistence.Repositories
+namespace VSOP.Persistence.Repositories;
+
+public interface IWorldRepository
 {
-    internal interface IWorldRepository
-    {
-        IEnumerable<World> GetWorldWithCountiesByIdAsync(Guid id);
-    }
+    public IEnumerable<World> GetWorldWithCountiesByIdAsync(Guid id);
 }

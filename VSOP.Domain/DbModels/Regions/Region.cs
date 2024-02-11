@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Factories;
 using VSOP.Domain.Primitives;
-using VSOP.Domain.DbModels.Factories;
-using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Regions;
 
@@ -21,7 +19,7 @@ public class Region : Entity, IEquatable<Region>
 
     public Guid RegionStoreId { get; private init; }
 
-    public List<Factory> Factories { get; private set; } = [];
+    public List<Producer> Producers { get; private set; } = new();
 
     public static Region Create(string name, Guid countryId, Guid regionStoreId)
     {

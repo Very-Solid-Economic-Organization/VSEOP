@@ -1,8 +1,7 @@
 ﻿using VSOP.Domain.DbModels.Countries;
-using VSOP.Domain.DbModels.StoredCommodities;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Stories
+namespace VSOP.Domain.DbModels.Stores
 {
     internal class RegionStore : Entity, IEquatable<RegionStore>
     {
@@ -10,7 +9,7 @@ namespace VSOP.Domain.DbModels.Stories
         {
         }
 
-        public List<BaseStoredCommodity> StoredCommodities = [];
+        public HashSet<StoredCommodity> StoredCommodities = new();
 
         public static RegionStore Create()
         {

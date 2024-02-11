@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Domain.Primitives;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.Primitives;
 
