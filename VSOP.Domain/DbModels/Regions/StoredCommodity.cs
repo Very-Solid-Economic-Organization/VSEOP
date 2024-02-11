@@ -6,12 +6,13 @@ namespace VSOP.Domain.DbModels.Regions;
 
 public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 {
-    public StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price) : base(id) //TODO: добавить Demand
+    public StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price, Demand demand = Demand.Medium) : base(id)
     {
         CommodityId = commodityId;
         Quantity = quantity;
         SelfCost = selfCost;
         Price = price;
+        CurrentDemand = demand;
     }
 
     public Guid CommodityId { get; private init; }
@@ -22,7 +23,7 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 
     public ulong Price { get; set; } = 0;
 
-    public Demand CurrentDemand { get; set; }
+    public Demand CurrentDemand { get; set; } = Demand.Medium;
 
     public static StoredCommodity Create(Guid commodityId, float quantity, ulong selfCost, ulong price)
     {

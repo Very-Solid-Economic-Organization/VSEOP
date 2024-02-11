@@ -6,7 +6,7 @@ using VSOP.Domain.Primitives;
 namespace VSOP.Domain.DbModels.Producers;
 public class ProcessedCommodity : Entity
 {
-    public ProcessedCommodity(Guid id, Guid processId, Guid commodityId, ProcessedComodityType type, float quantity) : base(id)
+    private ProcessedCommodity(Guid id, Guid processId, Guid commodityId, ProcessedComodityType type, float quantity) : base(id)
     {
         ProcessId = processId;
         CommodityId = commodityId;
@@ -26,18 +26,18 @@ public class ProcessedCommodity : Entity
 
     public float Quantity { get; private set; } = 0;
 
-    public static ProcessedCommodity ConsumingCommodity(Guid processId, Guid commodityId, float quantity)
+    public static ProcessedCommodity CreateConsumingCommodity(Guid processId, Guid commodityId, float quantity)
     {
         CreationValidation(processId, commodityId, quantity);
 
-        return new ProcessedCommodity(Guid.NewGuid(), processId, commodityId, 0, quantity);
+        return new ProcessedCommodity(Guid.NewGuid(), processId, commodityId, ProcessedComodityType.Used, quantity);
     }
 
-    public static ProcessedCommodity ProducingCommodity(Guid processId, Guid commodityId, float quantity)
+    public static ProcessedCommodity CreateProducingCommodity(Guid processId, Guid commodityId, float quantity)
     {
         CreationValidation(processId, commodityId, quantity);
 
-        return new ProcessedCommodity(Guid.NewGuid(), processId, commodityId, 1, quantity);
+        return new ProcessedCommodity(Guid.NewGuid(), processId, commodityId, ProcessedComodityType.Produced, quantity);
     }
 
     static void CreationValidation(Guid processId, Guid commodityId, float quantity)
