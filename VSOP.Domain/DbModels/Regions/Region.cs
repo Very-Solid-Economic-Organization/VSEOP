@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Domain.DbModels.Factories;
+using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Regions;
