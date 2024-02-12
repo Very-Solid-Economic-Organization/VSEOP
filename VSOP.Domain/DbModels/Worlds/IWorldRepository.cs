@@ -1,7 +1,8 @@
-﻿using VSOP.Domain.DbModels.Worlds;
-using VSOP.Domain.Primitives;
+﻿using VSOP.Domain.Primitives;
 
-namespace VSOP.Persistence.Repositories;
+namespace VSOP.Domain.DbModels.Worlds;
 
 public interface IWorldRepository : IRepository<World>
-{ }
+{
+
+}

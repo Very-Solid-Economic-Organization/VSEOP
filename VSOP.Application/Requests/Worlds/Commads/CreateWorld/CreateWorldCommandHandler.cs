@@ -4,11 +4,8 @@ using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
-using VSOP.Persistence.Repositories;
 
-namespace VSOP.Application.Worlds.Commads.CreateWorld;
-
-public sealed record CreateWorldCommand(string name) : ICommand<World>;
+namespace VSOP.Application.Requests.Worlds.Commads.CreateWorld;
 
 internal sealed class CreateWorldCommandHandler : ICommandHandler<CreateWorldCommand, World>
 {
@@ -29,6 +26,6 @@ internal sealed class CreateWorldCommandHandler : ICommandHandler<CreateWorldCom
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Result.Create(newWorld, new Error (HttpStatusCode.NoContent, $"Can't create new world with name:{request.name}"));
+        return Result.Success<World>(newWorld);
     }
 }

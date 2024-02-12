@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Persistence.Repositories;
@@ -14,12 +15,16 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _context.SingleOrDefaultAsync(x => x.Id == id);
+        return await _context.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _context.ToListAsync(cancellationToken);
+    }
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+    {
+        return await _context.Where(predicate).ToListAsync(cancellationToken);
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)
