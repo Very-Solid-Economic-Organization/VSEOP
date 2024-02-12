@@ -33,6 +33,6 @@ internal sealed class GetWorldListQueryHandler : IQueryHandler<GetWorldListQuery
                 HttpStatusCode.NoContent,
                 $"Not found any objects of world"));
 
-        return Result.Success(result.ToList());
+        return Result.Success(result as List<World>);
     }
 }

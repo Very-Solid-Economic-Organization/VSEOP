@@ -3,7 +3,7 @@
 namespace VSOP.Domain.Primitives;
 
 /// <summary>Объект ошибки</summary>
-public class Error
+public class Error : ValueObject
 {
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="Error"/> класса.
@@ -30,5 +30,11 @@ public class Error
     /// <summary>
     /// Создает пустой объект ошибки.
     /// </summary>
-    internal static Error None => new Error(HttpStatusCode.BadRequest, string.Empty);
+    internal static Error None => new Error(HttpStatusCode.OK, string.Empty);
+
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Code;
+        yield return Message;
+    }
 }

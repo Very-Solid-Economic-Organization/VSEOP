@@ -24,7 +24,6 @@ internal sealed class CreateWorldCommandHandler : ICommandHandler<CreateWorldCom
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-
         return Result.Success(newWorld);
     }
 }

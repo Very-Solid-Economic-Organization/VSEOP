@@ -24,6 +24,6 @@ internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWorldByIdQuery
                 HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
                 $"No worlds were found for Id {request.Id}"));
 
-        return Result.Success(result);
+        return Result.Success<World>(result);
     }
 }
