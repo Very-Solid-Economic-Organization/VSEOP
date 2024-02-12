@@ -3,7 +3,7 @@ using VSOP.Domain.DbModels.Worlds;
 
 namespace VSOP.Persistence.Repositories;
 
-internal class WorldRepository : Repository<World>, IWorldRepository
+internal class WorldRepository : Repository<World>, IRegionStoreRepository
 {
     public WorldRepository(VSEOPContext context) : base(context)
     {

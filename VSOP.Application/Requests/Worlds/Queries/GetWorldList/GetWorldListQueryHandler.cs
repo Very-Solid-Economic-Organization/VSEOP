@@ -9,9 +9,9 @@ namespace VSOP.Application.Requests.Worlds.Queries.GetWorldList;
 
 internal sealed class GetWorldListQueryHandler : IQueryHandler<GetWorldListQuery, List<World>>
 {
-    private readonly IWorldRepository _Repository;
+    private readonly IRegionStoreRepository _Repository;
 
-    public GetWorldListQueryHandler(IWorldRepository Repository)
+    public GetWorldListQueryHandler(IRegionStoreRepository Repository)
     {
         _Repository = Repository;
     }

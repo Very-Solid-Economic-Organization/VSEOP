@@ -10,24 +10,24 @@ namespace VSOP.Application.Requests.Worlds.Commads.RemoveWorld
 {
     internal sealed class RemoveWorldCommandHandler : ICommandHandler<RemoveWorldCommand>
     {
-        private readonly IWorldRepository _Repository;
+        private readonly IWorldRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
 
         public RemoveWorldCommandHandler(IWorldRepository Repository, IUnitOfWork unitOfWork)
         {
-            _Repository = Repository;
+            _repository = Repository;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<Result> Handle(RemoveWorldCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _Repository.GetByIdAsync(request.worldGuid, cancellationToken);
+            var entity = await _repository.GetByIdAsync(request.worldGuid, cancellationToken);
             if (entity == null)
                 return Result.Failure(new Error(
                 HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
                 $"No worlds were found for Id {request.worldGuid}"));
 
-            _Repository.Remove(entity);
+            _repository.Remove(entity);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

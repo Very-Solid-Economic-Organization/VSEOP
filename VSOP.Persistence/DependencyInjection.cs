@@ -24,7 +24,7 @@ public static class DependencyInjection
 
         #region Repositories
         services.AddScoped<ICountryRepository, CountryRepository>();
-        services.AddScoped<IWorldRepository, WorldRepository>();
+        services.AddScoped<IRegionStoreRepository, WorldRepository>();
         #endregion
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
