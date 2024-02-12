@@ -5,7 +5,7 @@ namespace VSOP.Domain.DbModels.Producers;
 
 public abstract class Producer : Entity, IEquatable<Producer>
 {
-    public Producer(Guid id, Guid regionId) : base(id)
+    protected Producer(Guid id, Guid regionId) : base(id)
     {
         RegionId = regionId;
     }

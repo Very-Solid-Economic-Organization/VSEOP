@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.Primitives;
 
@@ -6,26 +7,36 @@ namespace VSOP.Domain.DbModels.Regions;
 
 public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 {
-    public StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price, Demand demand = Demand.Medium) : base(id)
+    private StoredCommodity(Guid id, Guid commodityId, float quantity, long selfCost, long price, Demand currentDemand) : base(id)
     {
         CommodityId = commodityId;
         Quantity = quantity;
         SelfCost = selfCost;
         Price = price;
-        CurrentDemand = demand;
+        CurrentDemand = currentDemand;
     }
+
+    private StoredCommodity(Guid id, Guid commodityId, float quantity, long selfCost, long price) : base(id)
+    {
+        CommodityId = commodityId;
+        Quantity = quantity;
+        SelfCost = selfCost;
+        Price = price;   
+    } //TODO: осознать как обойти проблему
 
     public Guid CommodityId { get; private init; }
 
+    public Commodity Commodity { get; private set; }
+
     public float Quantity { get; private init; } = 0;
 
-    public ulong SelfCost { get; set; } = 0;
+    public long SelfCost { get; private set; } = 0;
 
-    public ulong Price { get; set; } = 0;
+    public long Price { get; private set; } = 0;
 
-    public Demand CurrentDemand { get; set; } = Demand.Medium;
+    public Demand CurrentDemand { get; private set; } = Demand.Medium;
 
-    public static StoredCommodity Create(Guid commodityId, float quantity, ulong selfCost, ulong price)
+    public static StoredCommodity Create(Guid commodityId, float quantity, long selfCost, long price, Demand demand)
     {
         if (commodityId == Guid.Empty)
             throw new ValidationException("Commodity Id can't be empty");
@@ -33,7 +44,7 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
         if (IsNegative(quantity))
             throw new ValidationException("Quantity value can't be negative");
 
-        return new(Guid.NewGuid(), commodityId, quantity, selfCost, price);
+        return new(Guid.NewGuid(), commodityId, quantity, selfCost, price, demand);
     }
 
     private static bool IsNegative(float value) =>

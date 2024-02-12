@@ -8,14 +8,12 @@ internal class RegionStoreConfiguration : IEntityTypeConfiguration<RegionStore>
 {
     public void Configure(EntityTypeBuilder<RegionStore> builder)
     {
-        builder.HasKey(rs => rs.Id);
+        builder.HasKey(x => x.Id);
 
-        builder.HasMany(sc => sc.StoredCommodities)
-            .WithOne()
-            .HasForeignKey(sc => sc.CommodityId);
-
-        builder.HasOne<Region>()
-            .WithOne()
-            .HasForeignKey(rs => rs.)
+        builder.HasOne(x => x.Region)
+            .WithOne(x => x.RegionStore)
+            .HasForeignKey<RegionStore>(x => x.RegionId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

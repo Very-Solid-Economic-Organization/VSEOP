@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Domain.DbModels.Comodities;
+using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.Primitives;
 

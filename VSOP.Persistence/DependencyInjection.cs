@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VSOP.Application.Data;
-using VSOP.Domain.Primitives;
 using VSOP.Persistence.Repositories;
 
 namespace VSOP.Persistence;

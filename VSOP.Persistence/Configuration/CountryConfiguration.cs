@@ -8,10 +8,11 @@ internal class CountryConfiguration : IEntityTypeConfiguration<Country>
 {
     public void Configure(EntityTypeBuilder<Country> builder)
     {
-        builder.HasKey(w => w.Id);
+        builder.HasKey(c => c.Id);
 
-        builder.HasMany(w => w.Regions)
-            .WithOne()
-            .HasForeignKey(c => c.CountryId);
+        builder.HasOne(c => c.World)
+            .WithMany(r => r.Countries)
+            .HasForeignKey(r => r.WorldId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

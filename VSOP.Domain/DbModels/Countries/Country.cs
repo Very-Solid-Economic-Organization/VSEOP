@@ -7,7 +7,7 @@ namespace VSOP.Domain.DbModels.Countries;
 
 public class Country : Entity, IEquatable<Country>
 {
-    public Country(Guid id, string name, Guid worldId) : base(id)
+    private Country(Guid id, string name, Guid worldId) : base(id)
     {
         Name = name;
         WorldId = worldId;

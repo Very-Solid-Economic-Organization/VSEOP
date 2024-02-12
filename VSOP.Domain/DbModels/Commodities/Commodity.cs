@@ -2,11 +2,11 @@
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Comodities;
+namespace VSOP.Domain.DbModels.Commodities;
 
 public class Commodity : Entity, IEquatable<Commodity>
 {
-    public Commodity(Guid id, string name) : base(id)
+    private Commodity(Guid id, string name) : base(id)
     {
         Name = name;
     }

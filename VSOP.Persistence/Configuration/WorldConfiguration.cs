@@ -8,13 +8,5 @@ internal class WorldConfiguration : IEntityTypeConfiguration<World>
     public void Configure(EntityTypeBuilder<World> builder)
     {
         builder.HasKey(w => w.Id);
-
-        builder.HasMany(w => w.Countries)
-            .WithOne()
-            .HasForeignKey(c => c.WorldId);
-
-        builder.HasMany(w => w.Commodities)
-            .WithOne()
-            .HasForeignKey(c => c.WorldId);
     }
 }

@@ -9,7 +9,7 @@ internal class WorldRepository : Repository<World>, IWorldRepository
     {
     }
 
-    public IEnumerable<World> GetWorldWithCountiesByIdAsync(Guid id)
+    public IEnumerable<World> GetWorldWithCountiesByIdAsync(Guid id) //TODO: To delete
     {
         return _context.Where(x => x.Id == id).Include(x => x.Countries);
     }

@@ -1,36 +1,33 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VSOP.Domain.DbModels.Comodities;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Producers;
 
 public class Process : Entity, IEquatable<Process>
 {
-    public Process(Guid id, Guid producerId, int processesCount) : base(id)
+    private Process(Guid id, int processesCount) : base(id)
     {
-        ProducerId = producerId;
         ProcessesCount = processesCount;
     }
 
+    #region overthink-нуть
+    /// <summary>Не говнокод, а филигранное решение проблемы</summary>
+    public HashSet<ProcessedCommodity> CosumedCommdities => ProcessedCommodities.Where(x => x.Type == Enums.ProcessedComodityType.Used).ToHashSet();
+    public HashSet<ProcessedCommodity> ProducedCommdities => ProcessedCommodities.Where(x => x.Type == Enums.ProcessedComodityType.Produced).ToHashSet();
+    public HashSet<ProcessedCommodity> ProcessedCommodities { get; private set; } = new();
+    #endregion
+
     public int ProcessesCount { get; set; } = 0;
 
-    public Guid ProducerId { get; private init; }
+    public HashSet<Producer> Factories { get; private set; }
 
-    public Producer Producer { get; private set; }
 
-    public HashSet<ProcessedCommodity> ConsumingCommodities { get; set; } = new(); //TODO : не тот тип, переделать
-
-    public HashSet<ProcessedCommodity> ProducedCommodities { get; set; } = new();
-
-    public static Process Create(Guid producerId, int processesCount)
+    public static Process Create(int processesCount)
     {
-        if (producerId == Guid.Empty)
-            throw new ValidationException("Producer Id can't be empty");
-
         if (processesCount < 0)
             throw new ValidationException("ProcessesCount can't be negative");
 
-        return new(Guid.NewGuid(), producerId, processesCount);
+        return new(Guid.NewGuid(), processesCount);
     }
 
     public bool Equals(Process? other)
