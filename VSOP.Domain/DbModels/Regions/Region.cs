@@ -27,7 +27,7 @@ public class Region : Entity, IEquatable<Region>
 
     public HashSet<Factory> Factories { get; private set; } = new();
 
-    public static Region Create(string name, Guid countryId, Guid regionStoreId)
+    public static Region Create(string name, Guid countryId)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name can't be null or empty");
@@ -35,10 +35,7 @@ public class Region : Entity, IEquatable<Region>
         if (countryId == Guid.Empty)
             throw new ValidationException("Empty countryId is not allowed");
 
-        if (regionStoreId == Guid.Empty)
-            throw new ValidationException("Empty regionStoreId is not allowed");
-
-        return new Region(Guid.NewGuid(), name, countryId, regionStoreId);
+        return new Region(Guid.NewGuid(), name, countryId, Guid.NewGuid());
     }
 
     public bool Equals(Region? other)

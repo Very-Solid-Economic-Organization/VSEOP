@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
 
 namespace VSOP.Persistence.Repositories;
 
-internal class WorldRepository : Repository<World>, IWorldRepository
+internal class RegionRepository : Repository<Region>, IRegionRepository
 {
-    public WorldRepository(VSEOPContext context) : base(context)
+    public RegionRepository(VSEOPContext context) : base(context)
     {
     }
 

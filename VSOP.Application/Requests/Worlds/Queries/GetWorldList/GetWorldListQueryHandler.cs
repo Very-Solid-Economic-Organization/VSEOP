@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using System.Net;
 using VSOP.Application.Abstractions.Messaging;
+using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
@@ -9,9 +10,9 @@ namespace VSOP.Application.Requests.Worlds.Queries.GetWorldList;
 
 internal sealed class GetWorldListQueryHandler : IQueryHandler<GetWorldListQuery, List<World>>
 {
-    private readonly IRegionStoreRepository _Repository;
+    private readonly IWorldRepository _Repository;
 
-    public GetWorldListQueryHandler(IRegionStoreRepository Repository)
+    public GetWorldListQueryHandler(IWorldRepository Repository)
     {
         _Repository = Repository;
     }
