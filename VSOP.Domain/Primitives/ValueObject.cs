@@ -1,7 +1,7 @@
 ﻿namespace VSOP.Domain.Primitives;
 
 /// <summary>
-/// Represents the base class all value objects derive from.
+/// Базовый абстрактный класс описывающий способы сравнения value object-ов.
 /// </summary>
 public abstract class ValueObject : IEquatable<ValueObject>
 {
@@ -22,10 +22,8 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
     public static bool operator !=(ValueObject a, ValueObject b) => !(a == b);
 
-    /// <inheritdoc />
     public bool Equals(ValueObject other) => !(other is null) && GetAtomicValues().SequenceEqual(other.GetAtomicValues());
 
-    /// <inheritdoc />
     public override bool Equals(object obj)
     {
         if (obj == null)
@@ -46,7 +44,6 @@ public abstract class ValueObject : IEquatable<ValueObject>
         return GetAtomicValues().SequenceEqual(valueObject.GetAtomicValues());
     }
 
-    /// <inheritdoc />
     public override int GetHashCode()
     {
         HashCode hashCode = default;

@@ -22,7 +22,7 @@ internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWorldByIdQuery
         if (result is null)
             return Result.Failure<World>(new Error(
                 HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
-                $"No worlds were found for Id {request.Id}"));
+                $"No worlds were found by Id {request.Id}"));
 
         return Result.Success<World>(result);
     }
