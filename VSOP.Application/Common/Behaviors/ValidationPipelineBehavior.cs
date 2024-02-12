@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using FSOP.Application.Interfaces;
 using MediatR;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;

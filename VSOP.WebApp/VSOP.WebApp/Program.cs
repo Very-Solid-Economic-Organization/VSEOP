@@ -1,3 +1,4 @@
+using VSOP.Application;
 using VSOP.Persistence;
 using VSOP.WebApp.Components;
 
@@ -13,6 +14,7 @@ namespace VSOP.WebApp
 
             #region SolutionDI's
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddApplication(builder.Configuration);
             #endregion
 
             // Add services to the container.

@@ -8,11 +8,11 @@ internal class ProcessedCommodityConfiguration : IEntityTypeConfiguration<Proces
 {
     public void Configure(EntityTypeBuilder<ProcessedCommodity> builder)
     {
-        builder.HasKey(x => x.Id);
+        builder.HasKey(pc=> pc.Id);
 
-        builder.HasOne(x => x.Process)
-            .WithMany(x => x.ProcessedCommodities)
-            .HasForeignKey(x => x.ProcessId)
+        builder.HasOne(pc => pc.Process)
+            .WithMany(p => p.ProcessedCommodities)
+            .HasForeignKey(pc => pc.ProcessId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
     }

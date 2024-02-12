@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VSOP.Application.Data;
+using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Persistence.Repositories;
@@ -22,6 +23,7 @@ public static class DependencyInjection
         });
 
         #region Repositories
+        services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IWorldRepository, WorldRepository>();
         #endregion
 

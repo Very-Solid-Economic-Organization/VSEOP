@@ -10,5 +10,13 @@ internal class ProcessConfiguration : IEntityTypeConfiguration<Process>
     {
         builder.HasKey(p => p.Id);
 
+        builder.HasMany(p => p.ProcessedCommodities)
+            .WithOne(pc => pc.Process)
+            .HasForeignKey(p => p.ProcessId);
+
+        #region Сомнительно, но Okay
+        builder.Ignore(x => x.CosumedCommdities); 
+        builder.Ignore(x => x.ProducedCommdities);
+        #endregion
     }
 }

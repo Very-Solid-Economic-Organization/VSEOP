@@ -5,7 +5,7 @@ namespace VSOP.Persistence.Repositories;
 
 internal class CountryRepository : Repository<Country>, ICountryRepository
 {
-    public CountryRepository(DbContext context) : base(context)
+    public CountryRepository(VSEOPContext context) : base(context)
     {
     }
 

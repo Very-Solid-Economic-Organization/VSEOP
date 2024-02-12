@@ -5,7 +5,7 @@ namespace VSOP.Persistence.Repositories;
 
 internal class WorldRepository : Repository<World>, IWorldRepository
 {
-    public WorldRepository(DbContext context) : base(context)
+    public WorldRepository(VSEOPContext context) : base(context)
     {
     }
 

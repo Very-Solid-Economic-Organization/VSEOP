@@ -28,15 +28,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)
-    {
-        var result = await _context.AddAsync(entity);
-    }
+        => await _context.AddAsync(entity);
 
-    public void UpdateAsync(TEntity entity, CancellationToken cancellationToken)
-    {
-        var result = _context.Update(entity);
-        //var result =  _entities.Entry(entity).State = EntityState.Modified;
-    }
+    public void Update(TEntity entity, CancellationToken cancellationToken)
+        => _context.Update(entity);
 
     public void Remove(TEntity entity)
     {

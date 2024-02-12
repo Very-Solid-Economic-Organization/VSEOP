@@ -11,7 +11,7 @@ public interface IRepository<TEntity> where TEntity : class
 
     public Task AddAsync(TEntity entity, CancellationToken cancellationToken);
 
-    public void UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+    public void Update(TEntity entity, CancellationToken cancellationToken);
 
     public void Remove(TEntity entity);
 }
