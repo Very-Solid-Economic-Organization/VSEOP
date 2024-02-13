@@ -22,7 +22,7 @@ internal sealed class GetWorldListQueryHandler : IQueryHandler<GetWorldListQuery
         IEnumerable<World> result;
         if (!string.IsNullOrWhiteSpace(request.name))
         {
-            result = await _Repository.GetAllAsync(x => x.Name == request.name, cancellationToken);
+            result = await _Repository.WhereAsync(x => x.Name == request.name, cancellationToken);
         }
         else
         {
