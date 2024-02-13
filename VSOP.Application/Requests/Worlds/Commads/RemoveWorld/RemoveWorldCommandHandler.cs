@@ -29,7 +29,7 @@ namespace VSOP.Application.Requests.Worlds.Commads.RemoveWorld
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return Result.Success();
+            return Result.Success(HttpStatusCode.NoContent);
         }
     }
 }

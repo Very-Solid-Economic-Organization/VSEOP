@@ -34,6 +34,9 @@ public abstract class ApiController : ControllerBase
         if (result.Code is HttpStatusCode.OK)
             return Ok(result.Value);
 
+        else if(result.Code is HttpStatusCode.Created) //TODO: Ещё подумать
+            return CreatedAtAction(nameof(T), result.Value);
+
         return HandleNotOkResult(result);
     }
 
