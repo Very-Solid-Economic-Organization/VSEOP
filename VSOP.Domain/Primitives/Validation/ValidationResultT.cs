@@ -10,7 +10,7 @@ namespace VSOP.Domain.Primitives.Validation
     public sealed class ValidationResult<TValue> : Result<TValue>, IValidationResult
     {
         private ValidationResult(Error[] errors)
-            : base(default, false, IValidationResult.ValidationError) =>
+            : base(default, false, IValidationResult.ValidationError, System.Net.HttpStatusCode.UnprocessableEntity) =>
             Errors = errors;
 
         public Error[] Errors { get; }

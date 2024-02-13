@@ -1,4 +1,6 @@
-﻿namespace VSOP.Domain.Primitives.Results;
+﻿using System.Net;
+
+namespace VSOP.Domain.Primitives.Results;
 
 /// <summary>
 /// Результат какой-либо операции, с информацией о успешности с возможным значением или ошибкой.
@@ -15,8 +17,8 @@ public class Result<TValue> : Result
     /// <param name="isSuccess">Указатель успешности или неуспешности результата.</param>
     /// <param name="error">Объект ошибки.</param>
 
-    protected internal Result(TValue value, bool isSuccess, Error error)
-        : base(isSuccess, error)
+    protected internal Result(TValue value, bool isSuccess, Error error, HttpStatusCode code)
+        : base(isSuccess, error, code)
         => _value = value;
 
     public static implicit operator Result<TValue>(TValue value) => Success(value);

@@ -20,43 +20,30 @@ public class WorldsController : ApiController //TODO: уйти от дб-шны�
     { }
 
     [HttpGet]
-    public async Task<IActionResult> GetWorlds()
+    public async Task<IActionResult> GetWorlds(CancellationToken cancellationToken)
     {
-        Result<List<World>> result = await Sender.Send(new GetWorldListQuery());
-        if (result.IsFailure)
-            return HandleFailure(result);
-
-        return Ok(result.Value);
+        Result<List<World>> result = await Sender.Send(new GetWorldListQuery(), cancellationToken);
+        return HandleResult(result);
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetWorldById(Guid id)
+    public async Task<IActionResult> GetWorldById(Guid id, CancellationToken cancellationToken)
     {
-        Result<World> result = await Sender.Send(new GetWorldByIdQuery(id));
-        if (result.IsFailure)
-            return HandleFailure(result);
-
-        return Ok(result.Value);
+        Result<World> result = await Sender.Send(new GetWorldByIdQuery(id), cancellationToken);
+        return HandleResult(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateWorldRequest request)
+    public async Task<IActionResult> Create([FromBody] CreateWorldRequest request, CancellationToken cancellationToken)
     {
-        Result<World> result = await Sender.Send(new CreateWorldCommand(request.Name));
-
-        if (result.IsFailure)
-            return HandleFailure(result);
-
-        return Ok(result.Value);
+        Result<World> result = await Sender.Send(new CreateWorldCommand(request.Name), cancellationToken);
+        return HandleResult(result);
     }
 
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id)
-    {
-        Result result = await Sender.Send(new RemoveWorldCommand(id));
-        if (result.IsFailure)
-            return HandleFailure(result);
-
-        return NoContent();
-    }
+    //[HttpDelete("{id:guid}")]
+    //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    //{
+    //    Result result = await Sender.Send(new RemoveWorldCommand(id), cancellationToken);
+    //    return HandleResult(result);
+    //}
 }

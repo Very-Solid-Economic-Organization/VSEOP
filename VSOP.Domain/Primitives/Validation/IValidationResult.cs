@@ -9,7 +9,6 @@ namespace VSOP.Domain.Primitives.Validation
     public interface IValidationResult
     {
         public static readonly Error ValidationError = new(
-            System.Net.HttpStatusCode.UnprocessableContent,
             "A validation problem occurred."
             );
 
