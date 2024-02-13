@@ -7,6 +7,6 @@ internal class UpdateCountryCommandValidator : AbstractValidator<UpdateCountryCo
     public UpdateCountryCommandValidator()
     {
         RuleFor(x => x.Id).NotEmpty();
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.name).NotEmpty();
     }
 }
