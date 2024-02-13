@@ -51,7 +51,7 @@ public class Result
     /// <summary>
     /// Возвращает успешный результат <see cref="Result"/>.
     /// </summary>
-    /// <param name="code">Успешный <see cref="HttpStatusCode".</param>
+    /// <param name="code">Успешный <see cref="HttpStatusCode"/>.</param>
     /// <returns>Новый экземпляр <see cref="Result"/> с указателем успешности.</returns>
     public static Result Success(HttpStatusCode code = HttpStatusCode.OK) => new Result(true, Error.None, code);
 
@@ -60,7 +60,7 @@ public class Result
     /// </summary>
     /// <typeparam name="TValue">Тип значения результата.</typeparam>
     /// <param name="value">Значение результата.</param>
-    /// <param name="code">Успешный <see cref="HttpStatusCode".</param>
+    /// <param name="code">Успешный <see cref="HttpStatusCode"/>.</param>
     /// <returns>Новый экземпляр <see cref="Result{TValue}"/> с указателем успешности.</returns>
     public static Result<TValue> Success<TValue>(TValue value, HttpStatusCode code = HttpStatusCode.OK)
         => new Result<TValue>(value, true, Error.None, code);
@@ -80,7 +80,7 @@ public class Result
     /// Возвращает неуспешный <see cref="Result"/> с указанной ошибкой.
     /// </summary>
     /// <param name="error">Ошибка.</param>
-    /// <param name="code">Неуспешный <see cref="HttpStatusCode".</param>
+    /// <param name="code">Неуспешный <see cref="HttpStatusCode"/>.</param>
     /// <returns>Новый экземпляр <see cref="Result"/> с указанным объектом ошибки и указателем неудачи.</returns>
     public static Result Failure(Error error, HttpStatusCode code = HttpStatusCode.BadRequest) => new Result(false, error, code);
 
@@ -89,7 +89,7 @@ public class Result
     /// </summary>
     /// <typeparam name="TValue">Тип объекта результата.</typeparam>
     /// <param name="error">Объект ошибки.</param>
-    /// <param name="code">Неуспешный <see cref="HttpStatusCode".</param>
+    /// <param name="code">Неуспешный <see cref="HttpStatusCode"/>.</param>
     /// <returns>Новый экземпляр <see cref="Result{TValue}"/> с указанным объектом ошибки и указателем неудачи.</returns>
     public static Result<TValue> Failure<TValue>(Error error, HttpStatusCode code = HttpStatusCode.BadRequest)
         => new Result<TValue>(default!, false, error, code);

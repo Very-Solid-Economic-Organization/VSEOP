@@ -40,10 +40,10 @@ public class WorldsController : ApiController //TODO: уйти от дб-шны�
         return HandleResult(result);
     }
 
-    //[HttpDelete("{id:guid}")]
-    //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
-    //{
-    //    Result result = await Sender.Send(new RemoveWorldCommand(id), cancellationToken);
-    //    return HandleResult(result);
-    //}
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        Result result = await Sender.Send(new RemoveWorldCommand(id), cancellationToken);
+        return HandleResult(result);
+    }
 }

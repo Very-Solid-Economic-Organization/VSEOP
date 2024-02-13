@@ -14,24 +14,43 @@ namespace VSOP.WebApp.Abstractions; //Пока поживет тут, потом
 public abstract class ApiController : ControllerBase //TODO: Разнести HTTP-коды
 {
     protected readonly ISender Sender;
-
-    public ApiController(ISender sender) => Sender = sender;
-
     /// <summary>
-    /// Метод обработки <see cref="Result"/> выполнения
+    /// 
     /// </summary>
     /// <param name="result">Объект <see cref="Result"/> выполнения</param>
     /// <returns><see cref="IActionResult"/> с описанием ошибок для возврата</returns>
     /// <exception cref="InvalidOperationException">Возвращает исключение если <see cref="Result"/> был положительным </exception>
+    public ApiController(ISender sender) => Sender = sender;
+
+    /// <summary>
+    /// Метод обработки результата выполнения медиатора
+    /// </summary>
+    /// <typeparam name="T">Тип вложенного значения объекта ответа</typeparam>
+    /// <param name="result">Объект <see cref="Result"/> с успешности и вложенным значением, или неуспешности и ошибкой</param>
+    /// <returns><see cref="IActionResult"/> с телом ответа</returns>
     protected IActionResult HandleResult<T>(Result<T> result)
+    {
+        if (result.Code is HttpStatusCode.OK)
+            return Ok(result.Value);
+
+        return HandleNotOkResult(result);
+    }
+
+    /// <summary>
+    /// Метод обработки результата выполнения медиатора
+    /// </summary>
+    /// <param name="result">Объект <see cref="Result"/> с указателем успешности или неуспешности и ошибкой</param>
+    /// <returns></returns>
+    protected IActionResult HandleResult(Result result)
+        => HandleNotOkResult(result);
+
+    IActionResult HandleNotOkResult(Result result)
     {
         switch (result.Code) //TODO : добавить другие необходимые статус коды
         {
-            case HttpStatusCode.OK: return Ok(result.Value);
-
             case HttpStatusCode.NoContent: return NoContent();
 
-            case HttpStatusCode.UnprocessableContent: 
+            case HttpStatusCode.UnprocessableContent:
                 return UnprocessableEntity(
                 CreateProblemDetails(
                     "Validation failure", StatusCodes.Status422UnprocessableEntity,
@@ -43,8 +62,6 @@ public abstract class ApiController : ControllerBase //TODO: Разнести HT
                 CreateProblemDetails(
                     "Bad Request", StatusCodes.Status400BadRequest,
                     result.Error));
-
-
 
             default:
                 return BadRequest(CreateProblemDetails("Bad Request", StatusCodes.Status400BadRequest, result.Error));
