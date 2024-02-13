@@ -21,9 +21,9 @@ namespace VSOP.Application.Requests.Worlds.Commads.RemoveWorld
 
         public async Task<Result> Handle(RemoveWorldCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _repository.GetByIdAsync(request.worldGuid, cancellationToken);
+            var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
             if (entity == null)
-                return Result.Failure(new Error($"No worlds were found for Id {request.worldGuid}"), HttpStatusCode.UnprocessableContent);
+                return Result.Failure(new Error($"No worlds were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
             _repository.Remove(entity);
 

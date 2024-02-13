@@ -12,7 +12,7 @@ namespace VSOP.WebApp.Abstractions; //Пока поживет тут, потом
 /// </summary>
 
 [ApiController]
-public abstract class ApiController : ControllerBase //TODO: Разнести HTTP-коды
+public abstract class ApiController : ControllerBase
 {
     protected readonly ISender Sender;
     /// <summary>
@@ -69,7 +69,7 @@ public abstract class ApiController : ControllerBase //TODO: Разнести HT
         }
     }
 
-    static ProblemDetails CreateProblemDetails( //TODO: Изменить построение статусов
+    static ProblemDetails CreateProblemDetails(
         string title,
         int status,
         Error error,

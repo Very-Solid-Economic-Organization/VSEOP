@@ -2,4 +2,4 @@
 
 namespace VSOP.Application.Requests.Worlds.Commads.RemoveWorld;
 
-public sealed record RemoveWorldCommand(Guid worldGuid) : ICommand;
+public sealed record RemoveWorldCommand(Guid Id) : ICommand;
