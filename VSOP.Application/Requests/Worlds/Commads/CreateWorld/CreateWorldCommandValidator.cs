@@ -6,6 +6,6 @@ internal class CreateWorldCommandValidator : AbstractValidator<CreateWorldComman
 {
     public CreateWorldCommandValidator()
     {
-        RuleFor(x => x.name).NotNull().NotEmpty();
+        RuleFor(x => x.name).NotEmpty();
     }
 }

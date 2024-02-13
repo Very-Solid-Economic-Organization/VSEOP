@@ -5,6 +5,6 @@ internal class GetWorldByIdQueryValidator : AbstractValidator<GetWorldByIdQuery>
 {
     public GetWorldByIdQueryValidator()
     {
-        RuleFor(x => x.Id).NotNull();
+        RuleFor(x => x.Id).NotEmpty();
     }
 }

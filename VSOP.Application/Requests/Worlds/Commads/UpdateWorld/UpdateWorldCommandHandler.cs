@@ -6,34 +6,31 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Worlds.Commads.UpdateWorld
+namespace VSOP.Application.Requests.Worlds.Commads.UpdateWorld;
+
+internal sealed class UpdateWorldCommandHandler : ICommandHandler<UpdateWorldCommand, World>
 {
+    private readonly IWorldRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
 
-
-    internal sealed class UpdateWorldCommandHandler : ICommandHandler<UpdateWorldCommand, World>
+    public UpdateWorldCommandHandler(IWorldRepository Repository, IUnitOfWork unitOfWork)
     {
-        private readonly IWorldRepository _Repository;
-        private readonly IUnitOfWork _unitOfWork;
+        _repository = Repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public UpdateWorldCommandHandler(IWorldRepository Repository, IUnitOfWork unitOfWork)
-        {
-            _Repository = Repository;
-            _unitOfWork = unitOfWork;
-        }
+    public async Task<Result<World>> Handle(UpdateWorldCommand request, CancellationToken cancellationToken)
+    {
+        var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        if (entity == null)
+            return Result.Failure<World>(new Error($"{nameof(World)} was not found by Id - {request.Id}"), HttpStatusCode.UnprocessableContent);
 
-        public async Task<Result<World>> Handle(UpdateWorldCommand request, CancellationToken cancellationToken)
-        {
-            var entity = await _Repository.GetByIdAsync(request.Id, cancellationToken);
-            if (entity == null)
-                return Result.Failure<World>(new Error($"No {typeof(World)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
+        entity.Update(request.Name);
 
-            entity.Update(request.Name);
+        _repository.Update(entity);
 
-            _Repository.Update(entity);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-            return Result.Success<World>(entity);
-        }
+        return Result.Success(entity);
     }
 }
