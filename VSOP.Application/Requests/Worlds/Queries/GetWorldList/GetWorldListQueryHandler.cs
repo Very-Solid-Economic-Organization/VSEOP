@@ -30,10 +30,8 @@ internal sealed class GetWorldListQueryHandler : IQueryHandler<GetWorldListQuery
         }
 
         if (result?.Any() != true)
-            return Result.Failure<List<World>>(new Error(
-                HttpStatusCode.NoContent,
-                $"Not found any objects of world"));
+            return Result.Success<List<World>>(null,HttpStatusCode.NoContent);
 
-        return Result.Success(result as List<World>);
+        return Result.Success<List<World>>(result.ToList());
     }
 }

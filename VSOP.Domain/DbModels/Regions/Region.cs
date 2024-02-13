@@ -8,11 +8,12 @@ namespace VSOP.Domain.DbModels.Regions;
 
 public class Region : Entity, IEquatable<Region>
 {
-    private Region(Guid id, string name, Guid countryId, Guid regionStoreId) : base(id)
+    private Region(Guid id, string name, Guid countryId) : base(id)
     {
         Name = name;
         CountryId = countryId;
-        RegionStoreId = regionStoreId;
+        RegionStore = RegionStore.Create(id);
+        RegionStoreId = RegionStore.Id;
     }
 
     public string Name { get; private set; }
@@ -35,7 +36,7 @@ public class Region : Entity, IEquatable<Region>
         if (countryId == Guid.Empty)
             throw new ValidationException("Empty countryId is not allowed");
 
-        return new Region(Guid.NewGuid(), name, countryId, Guid.NewGuid());
+        return new Region(Guid.NewGuid(), name, countryId);
     }
 
     public bool Equals(Region? other)

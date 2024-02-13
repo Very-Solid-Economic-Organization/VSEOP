@@ -22,9 +22,7 @@ internal sealed class RemoveRegionCommandHandler : ICommandHandler<RemoveRegionC
     {
         var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
         if (entity is null)
-            return Result.Failure(new Error(
-            HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
-            $"No {nameof(Region)} were found for Id {request.Id}"));
+            return Result.Failure(new Error($"No {nameof(Region)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
         _repository.Remove(entity);
 

@@ -62,7 +62,7 @@ public class Result
     /// <param name="value">Значение результата.</param>
     /// <param name="code">Успешный <see cref="HttpStatusCode"/>.</param>
     /// <returns>Новый экземпляр <see cref="Result{TValue}"/> с указателем успешности.</returns>
-    public static Result<TValue> Success<TValue>(TValue value, HttpStatusCode code = HttpStatusCode.OK)
+    public static Result<TValue> Success<TValue>(TValue? value, HttpStatusCode code = HttpStatusCode.OK)
         => new Result<TValue>(value, true, Error.None, code);
 
     /// <summary>

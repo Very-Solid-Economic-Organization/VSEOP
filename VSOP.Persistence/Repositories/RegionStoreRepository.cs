@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
+using VSOP.Domain.Primitives;
 
 namespace VSOP.Persistence.Repositories;
 
@@ -10,8 +11,9 @@ internal class RegionStoreRepository : Repository<RegionStore>, IRegionStoreRepo
     {
     }
 
-    //public IEnumerable<World> Where(Guid id)
-    //{
-    //    return _context.Where(x => x.Id == id).Include(x => x.Countries);
-    //}
+
+    public async Task<RegionStore?> GetWithCommoditiesByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return await _context.Include(x => x.StoredCommodities).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    }
 }

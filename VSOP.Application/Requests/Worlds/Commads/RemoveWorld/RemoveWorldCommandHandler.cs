@@ -23,9 +23,7 @@ namespace VSOP.Application.Requests.Worlds.Commads.RemoveWorld
         {
             var entity = await _repository.GetByIdAsync(request.worldGuid, cancellationToken);
             if (entity == null)
-                return Result.Failure(new Error(
-                HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
-                $"No worlds were found for Id {request.worldGuid}"));
+                return Result.Failure(new Error($"No worlds were found for Id {request.worldGuid}"), HttpStatusCode.UnprocessableContent);
 
             _repository.Remove(entity);
 

@@ -19,11 +19,14 @@ internal sealed class GetRegionStoreByIdQueryHandler : IQueryHandler<GetRegionSt
 
     public async Task<Result<RegionStore>> Handle(GetRegionStoreByIdQuery request, CancellationToken cancellationToken)
     {
-        var result = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        RegionStore? result;
+        if (request.IncludeCommodities)
+            result = await _repository.GetWithCommoditiesByIdAsync(request.Id, cancellationToken);
+        else
+            result = await _repository.GetByIdAsync(request.Id, cancellationToken);
+
         if (result is null)
-            return Result.Failure<RegionStore>(new Error(
-                HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
-                $"No {nameof(RegionStore)} were found for Id {request.Id}"));
+            return Result.Success<RegionStore>(result, HttpStatusCode.NoContent);
 
         return Result.Success<RegionStore>(result);
     }

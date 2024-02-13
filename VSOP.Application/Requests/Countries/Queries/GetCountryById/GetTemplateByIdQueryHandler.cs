@@ -19,10 +19,8 @@ internal sealed class GetCountryByIdQueryHandler : IQueryHandler<GetCountryByIdQ
     {
         var result = await _Repository.GetByIdAsync(request.Id, cancellationToken);
         if (result is null)
-            return Result.Failure<Country>(new Error(
-                HttpStatusCode.NoContent,
-                $"No countries were found for id {request.Id}"));
+            return Result.Success<Country>(result, HttpStatusCode.NoContent);
 
-        return Result.Success(result);
+        return Result.Success<Country>(result);
     }
 }
