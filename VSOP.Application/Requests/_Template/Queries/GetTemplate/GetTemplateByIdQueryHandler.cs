@@ -8,16 +8,16 @@
 
 //internal sealed class GetTemplateByIdQueryHandler : IQueryHandler<GetTemplateByIdQuery, Template>
 //{
-//    private readonly ITemplateRepository _Repository;
+//    private readonly ITemplateRepository _repository;
 
-//    public GetTemplateByIdQueryHandler(ITemplateRepository Repository)
+//    public GetTemplateByIdQueryHandler(ITemplateRepository repository)
 //    {
-//        _Repository = Repository;
+//        _repository = repository;
 //    }
 
 //    public async Task<Result<Template>> Handle(GetTemplateByIdQuery request, CancellationToken cancellationToken)
 //    {
-//        var result = await _Repository.GetByIdAsync(request.Id, cancellationToken);
+//        var result = await _repository.GetByIdAsync(request.Id, cancellationToken);
 //        if (result is null)
 //            return Result.Failure<Template>(new Error(
 //                HttpStatusCode.NoContent,

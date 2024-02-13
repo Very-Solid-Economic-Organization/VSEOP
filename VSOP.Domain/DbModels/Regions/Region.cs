@@ -38,6 +38,15 @@ public class Region : Entity, IEquatable<Region>
         return new Region(Guid.NewGuid(), name, countryId);
     }
 
+    public void Update(string? name/*, Guid? countryId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
+
+        //if (countryId != null && countryId != Guid.Empty)
+        //    CountryId = countryId
+    }
+
     public bool Equals(Region? other)
     {
         return Id == other?.Id;

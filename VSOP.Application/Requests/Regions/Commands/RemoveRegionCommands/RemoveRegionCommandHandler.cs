@@ -2,6 +2,7 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
@@ -22,7 +23,7 @@ internal sealed class RemoveRegionCommandHandler : ICommandHandler<RemoveRegionC
     {
         var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
         if (entity is null)
-            return Result.Failure(new Error($"No {nameof(Region)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
+            return Result.Failure(new Error($"{nameof(Region)} was not found by Id - {request.Id}"), HttpStatusCode.UnprocessableContent);
 
         _repository.Remove(entity);
 

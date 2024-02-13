@@ -22,9 +22,15 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
         return await _context.ToListAsync(cancellationToken);
     }
+
     public async Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
     {
         return await _context.Where(predicate).ToListAsync(cancellationToken);
+    }
+
+    public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+    {
+        return await _context.AnyAsync(predicate, cancellationToken);
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)

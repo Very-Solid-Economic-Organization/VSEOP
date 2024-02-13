@@ -21,8 +21,8 @@ internal sealed class GetRegionByIdQueryHandler : IQueryHandler<GetRegionByIdQue
     {
         var result = await _repository.GetByIdAsync(request.Id, cancellationToken);
         if (result is null)
-            return Result.Success<Region>(result, HttpStatusCode.NoContent);
+            return Result.Success(result, HttpStatusCode.NoContent);
 
-        return Result.Success<Region>(result);
+        return Result.Success(result);
     }
 }

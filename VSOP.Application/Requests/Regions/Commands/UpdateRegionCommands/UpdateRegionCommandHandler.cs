@@ -1,29 +1,37 @@
-﻿using VSOP.Application.Abstractions.Messaging;
+﻿using System.Net;
+using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
+using VSOP.Application.Requests.Worlds.Commads.UpdateWorld;
 using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Worlds;
+using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-//namespace VSOP.Application.Requests.Regions.Commands.UpdateRegionCommands;
+namespace VSOP.Application.Requests.Regions.Commands.UpdateRegionCommands;
 
-//internal sealed class UpdateRegionCommandHandler : ICommandHandler<UpdateRegionCommand, Region>
-//{
-//    private readonly IRegionRepository _repository;
-//    private readonly IUnitOfWork _unitOfWork;
+internal sealed class UpdateRegionCommandHandler : ICommandHandler<UpdateRegionCommand, Region>
+{
+    private readonly IRegionRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
 
-//    public UpdateRegionCommandHandler(IRegionRepository regionStoreRepository, IUnitOfWork unitOfWork)
-//    {
-//        _repository = regionStoreRepository;
-//        _unitOfWork = unitOfWork;
-//    }
+    public UpdateRegionCommandHandler(IRegionRepository repository, IUnitOfWork unitOfWork)
+    {
+        _repository = repository;
+        _unitOfWork = unitOfWork;
+    }
 
-//    public async Task<Result<Region>> Handle(UpdateRegionCommand request, CancellationToken cancellationToken)
-//    {
-//        var newRegionStore = Region.Create(request.regionId);
+    public async Task<Result<Region>> Handle(UpdateRegionCommand request, CancellationToken cancellationToken)
+    {
+        var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        if (entity == null)
+            return Result.Failure<Region>(new Error($"{nameof(Region)} was not found by Id - {request.Id}"), HttpStatusCode.UnprocessableContent);
 
-//        await _repository.AddAsync(newRegionStore, cancellationToken);
+        entity.Update(request.name);
 
-//        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _repository.Update(entity);
 
-//        return Result.Success(newRegionStore);
-//    }
-//}
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Result.Success(entity);
+    }
+}
