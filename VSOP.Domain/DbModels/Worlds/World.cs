@@ -32,18 +32,14 @@ public class World : Entity
         return new World(Guid.NewGuid(), name/*, masterId*/);
     }
 
-    //public World UpdateName(string name/*, Guid masterId*/)
-    //{
-    //    if (string.IsNullOrEmpty(name))
-    //        throw new ValidationException("Name property can't be null or empty");
+    public void Update(string? name/*, Guid? masterId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
 
-    //    Name = name;
-
-    //    //if (masterId == Guid.Empty)
-    //    //    throw new ValidationException("Game master Id can't be empty");
-
-    //    return new World(Guid.NewGuid(), name/*, masterId*/);
-    //}
+        //if (masterId != null && masterId != Guid.Empty)
+        //    MasterId = masterId
+    }
 
     public bool Equals(Country? other)
     {

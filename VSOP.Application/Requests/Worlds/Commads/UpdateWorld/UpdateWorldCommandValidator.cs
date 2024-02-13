@@ -6,7 +6,7 @@ internal class UpdateWorldCommandValidator : AbstractValidator<UpdateWorldComman
 {
     public UpdateWorldCommandValidator()
     {
+        RuleFor(x => x.Id).NotEmpty();
         RuleFor(x => x.Name).NotEmpty();
-        RuleFor(x => x.WorldGuid).NotEmpty();
     }
 }

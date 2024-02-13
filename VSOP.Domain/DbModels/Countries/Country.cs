@@ -32,6 +32,15 @@ public class Country : Entity, IEquatable<Country>
         return new(Guid.NewGuid(), name, worldId);
     }
 
+    public void Update(string? name/*, Guid? worldId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
+
+        //if (worldId != null && worldId != Guid.Empty)
+        //    WorldId = worldId
+    }
+
     public bool Equals(Country? other)
     {
         return Id == other?.Id;

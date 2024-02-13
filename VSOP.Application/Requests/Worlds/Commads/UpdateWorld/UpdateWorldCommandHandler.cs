@@ -1,43 +1,39 @@
-﻿//using FluentValidation;
-//using System.Net;
-//using VSOP.Application.Abstractions.Messaging;
-//using VSOP.Application.Data;
-//using VSOP.Domain.DbModels.Worlds;
-//using VSOP.Domain.Primitives;
-//using VSOP.Domain.Primitives.Results;
+﻿using FluentValidation;
+using System.Net;
+using VSOP.Application.Abstractions.Messaging;
+using VSOP.Application.Data;
+using VSOP.Domain.DbModels.Worlds;
+using VSOP.Domain.Primitives;
+using VSOP.Domain.Primitives.Results;
 
-//namespace VSOP.Application.Requests.Worlds.Commads.UpdateWorld
-//{
+namespace VSOP.Application.Requests.Worlds.Commads.UpdateWorld
+{
 
 
-//    internal sealed class UpdateWorldCommandHandler : ICommandHandler<UpdateWorldCommand, World>
-//    {
-//        private readonly IWorldRepository _worldRepository;
-//        private readonly IUnitOfWork _unitOfWork;
+    internal sealed class UpdateWorldCommandHandler : ICommandHandler<UpdateWorldCommand, World>
+    {
+        private readonly IWorldRepository _Repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-//        public UpdateWorldCommandHandler(IWorldRepository worldRepository, IUnitOfWork unitOfWork)
-//        {
-//            _worldRepository = worldRepository;
-//            _unitOfWork = unitOfWork;
-//        }
+        public UpdateWorldCommandHandler(IWorldRepository Repository, IUnitOfWork unitOfWork)
+        {
+            _Repository = Repository;
+            _unitOfWork = unitOfWork;
+        }
 
-//        public async Task<Result<World>> Handle(UpdateWorldCommand request, CancellationToken cancellationToken)
-//        {
-//            var entity = await _worldRepository.GetByIdAsync(request.WorldGuid, cancellationToken);
-//            if (entity == null)
-//                return Result.Failure<World>(new Error(
-//                HttpStatusCode.NoContent, //TODO: Подумать над HTMLStatusCode подходящим для ситуации
-//                $"No worlds were found for Id {request.WorldGuid}"));
+        public async Task<Result<World>> Handle(UpdateWorldCommand request, CancellationToken cancellationToken)
+        {
+            var entity = await _Repository.GetByIdAsync(request.Id, cancellationToken);
+            if (entity == null)
+                return Result.Failure<World>(new Error($"No {typeof(World)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
-//            if (entity.Name == request.Name)
-//                return Result.Success<World>(entity); //Todo: Это не совсем правильно. Придумать лучше
+            entity.Update(request.Name);
 
-//            entity.Name = request.Name; //ЧЕТ ЕБЛЯ КАКАЯ ТО.
-//            _worldRepository.UpdateAsync(request.toUpdate, cancellationToken); //
+            _Repository.Update(entity);
 
-//            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-//            return Result.Success();
-//        }
-//    }
-//}
+            return Result.Success<World>(entity);
+        }
+    }
+}
