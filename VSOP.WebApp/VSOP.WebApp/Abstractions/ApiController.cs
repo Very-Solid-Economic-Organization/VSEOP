@@ -15,12 +15,7 @@ namespace VSOP.WebApp.Abstractions; //Пока поживет тут, потом
 public abstract class ApiController : ControllerBase
 {
     protected readonly ISender Sender;
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="result">Объект <see cref="Result"/> выполнения</param>
-    /// <returns><see cref="IActionResult"/> с описанием ошибок для возврата</returns>
-    /// <exception cref="InvalidOperationException">Возвращает исключение если <see cref="Result"/> был положительным </exception>
+
     public ApiController(ISender sender) => Sender = sender;
 
     /// <summary>
