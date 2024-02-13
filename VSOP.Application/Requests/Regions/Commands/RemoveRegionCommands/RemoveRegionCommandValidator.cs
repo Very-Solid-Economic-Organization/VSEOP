@@ -7,6 +7,6 @@ internal class RemoveRegionCommandValidator : AbstractValidator<RemoveRegionComm
 {
     public RemoveRegionCommandValidator()
     {
-        RuleFor(x => x.Id).NotEmpty();//TODO: Проверить работает ли NotEmpty() на Guid
+        RuleFor(x => x.Id).NotEmpty();
     }
 }

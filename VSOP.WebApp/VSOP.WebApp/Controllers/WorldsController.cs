@@ -18,7 +18,7 @@ public class WorldsController : ApiController
     { }
 
     /// <summary>
-    /// Возвращает список всех Миров из базы данныз
+    /// Возвращает список всех Миров из базы данных
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <remarks>
