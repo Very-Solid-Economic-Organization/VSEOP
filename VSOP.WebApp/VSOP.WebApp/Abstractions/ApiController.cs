@@ -10,6 +10,7 @@ namespace VSOP.WebApp.Abstractions; //Пока поживет тут, потом
 /// <summary>
 /// Базовое представление ApiContoller-а
 /// </summary>
+
 [ApiController]
 public abstract class ApiController : ControllerBase //TODO: Разнести HTTP-коды
 {

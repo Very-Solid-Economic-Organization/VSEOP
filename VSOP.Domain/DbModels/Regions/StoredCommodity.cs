@@ -7,7 +7,7 @@ namespace VSOP.Domain.DbModels.Regions;
 
 public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 {
-    private StoredCommodity(Guid id, Guid commodityId, float quantity, long selfCost, long price, Demand currentDemand) : base(id)
+    private StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price, Demand currentDemand) : base(id)
     {
         CommodityId = commodityId;
         Quantity = quantity;
@@ -15,8 +15,9 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
         Price = price;
         CurrentDemand = currentDemand;
     }
-
-    private StoredCommodity(Guid id, Guid commodityId, float quantity, long selfCost, long price) : base(id)
+   
+    /// <summary>Для efcore</summary>
+    private StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price) : base(id)
     {
         CommodityId = commodityId;
         Quantity = quantity;
@@ -30,13 +31,13 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
 
     public float Quantity { get; private init; } = 0;
 
-    public long SelfCost { get; private set; } = 0;
+    public ulong SelfCost { get; private set; } = 0;
 
-    public long Price { get; private set; } = 0;
+    public ulong Price { get; private set; } = 0;
 
     public Demand CurrentDemand { get; private set; } = Demand.Medium;
 
-    public static StoredCommodity Create(Guid commodityId, float quantity, long selfCost, long price, Demand demand)
+    public static StoredCommodity Create(Guid commodityId, float quantity, ulong selfCost, ulong price, Demand demand)
     {
         if (commodityId == Guid.Empty)
             throw new ValidationException("Commodity Id can't be empty");

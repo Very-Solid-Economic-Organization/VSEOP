@@ -12,22 +12,20 @@ using VSOP.WebApp.Abstractions;
 namespace VSOP.WebApp.Controllers;
 
 [Route("api/[controller]")]
-[ApiController]
-public class WorldsController : ApiController //TODO: уйти от дб-шных моделей
+public class WorldsController : ApiController
 {
-
     public WorldsController(ISender sender) : base(sender)
     { }
 
     [HttpGet]
-    public async Task<IActionResult> GetWorlds(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         Result<List<World>> result = await Sender.Send(new GetWorldListQuery(), cancellationToken);
         return HandleResult(result);
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetWorldById(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         Result<World> result = await Sender.Send(new GetWorldByIdQuery(id), cancellationToken);
         return HandleResult(result);

@@ -17,10 +17,9 @@ public class Process : Entity, IEquatable<Process>
     public HashSet<ProcessedCommodity> ProcessedCommodities { get; private set; } = new();
     #endregion
 
-    public int ProcessesCount { get; set; } = 0;
+    public int ProcessesCount { get; private set; } = 0;
 
     public HashSet<Producer> Factories { get; private set; }
-
 
     public static Process Create(int processesCount)
     {
