@@ -3,12 +3,20 @@ using VSOP.Domain.DbModels.Producers;
 
 namespace VSOP.Domain.DbModels.Factories;
 
+/// <summary>Объект производственного здания (Фабрика)</summary>
 public class Factory : Producer
 {
     private Factory(Guid id, Guid regionId, string name) : base(id, regionId, name)
     {
     }
 
+    /// <summary>
+    /// Объект производственного здания (Фабрика)
+    /// </summary>
+    /// <param name="regionId">Id региона к которому принадлежит фабрика</param>
+    /// <param name="name">Наименование фабрики</param>
+    /// <returns>Новый объект фабрики</returns>
+    /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
     public Factory Create(Guid regionId, string name)
     {
         if (regionId == Guid.Empty)

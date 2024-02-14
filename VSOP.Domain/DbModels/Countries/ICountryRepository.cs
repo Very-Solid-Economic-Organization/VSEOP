@@ -5,5 +5,4 @@ namespace VSOP.Domain.DbModels.Countries;
 
 public interface ICountryRepository : IRepository<Country>
 {
-
 }
