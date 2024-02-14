@@ -4,16 +4,14 @@ using VSOP.Application.Requests.Regions.Commands.CreateRegion;
 using VSOP.Application.Requests.Regions.Commands.RemoveRegion;
 using VSOP.Application.Requests.Regions.Queries.GetRegionById;
 using VSOP.Contracts.Regions;
-using VSOP.Domain.DbModels.Regions;
-using VSOP.Domain.Primitives.Results;
 using VSOP.WebApp.Abstractions;
 
 namespace VSOP.WebApp.Controllers;
 
 [Route("api/[controller]")]
-public class RegionsComtroller : ApiController
+public class RegionsController : ApiController
 {
-    public RegionsComtroller(ISender sender) : base(sender)
+    public RegionsController(ISender sender) : base(sender)
     {
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.DbModels.Factories;
+using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Regions;
@@ -25,7 +26,7 @@ public class Region : Entity, IEquatable<Region>
 
     public RegionStore RegionStore { get; private set; }
 
-    public HashSet<Factory> Factories { get; private set; } = new();
+    public HashSet<Producer> Producers { get; private set; } = new();
 
     public static Region Create(string name, Guid countryId)
     {

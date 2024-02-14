@@ -11,6 +11,12 @@ internal class ProducerConfiguration : IEntityTypeConfiguration<Producer>
     {
         builder.HasKey(p => p.Id);
 
+        builder.HasOne(p => p.Region)
+            .WithMany(r => r.Producers)
+            .HasForeignKey(p => p.RegionId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.HasMany(x => x.Processes)
             .WithMany(x => x.Factories);
 

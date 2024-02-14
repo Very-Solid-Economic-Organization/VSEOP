@@ -53,7 +53,7 @@ public class WorldsController : ApiController
     }
 
     /// <summary>
-    /// Создает новый объект Мир в базе данных из переданных параметров в объекте <see cref="CreateWorldRequest"/>
+    /// Создает новый объект Мир в базе данных из переданных параметров в объекте
     /// </summary>
     /// <param name="request">Объект принимаемых параметров</param>
     /// <param name="cancellationToken"></param>

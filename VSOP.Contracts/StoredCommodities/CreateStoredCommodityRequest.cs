@@ -10,5 +10,5 @@ public class CreateStoredCommodityRequest
 
     public ulong Price { get; set; }
 
-    public int Demmand { get; set; } //TODO: Тут будет инт иле не?
+    public int Demmand { get; set; }
 }

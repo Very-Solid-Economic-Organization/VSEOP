@@ -8,11 +8,6 @@ internal class FactoryConfiguration : IEntityTypeConfiguration<Factory>
 {
     public void Configure(EntityTypeBuilder<Factory> builder)
     {
-        builder.HasOne(p => p.Region)
-             .WithMany(r => r.Factories)
-             .HasForeignKey(p => p.RegionId)
-             .IsRequired()
-             .OnDelete(DeleteBehavior.Cascade);
 
         builder.ToTable("Producers");
     }
