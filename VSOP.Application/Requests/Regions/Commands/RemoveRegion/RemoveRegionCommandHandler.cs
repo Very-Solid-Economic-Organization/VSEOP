@@ -6,7 +6,7 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Regions.Commands.RemoveRegionCommands;
+namespace VSOP.Application.Requests.Regions.Commands.RemoveRegion;
 
 internal sealed class RemoveRegionCommandHandler : ICommandHandler<RemoveRegionCommand>
 {

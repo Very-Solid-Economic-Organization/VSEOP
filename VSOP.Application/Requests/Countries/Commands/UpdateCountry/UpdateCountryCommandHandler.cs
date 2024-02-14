@@ -7,7 +7,7 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Countries.Commands.CreateCountry
+namespace VSOP.Application.Requests.Countries.Commands.UpdateCountry
 {
     internal sealed class UpdateCountryCommandHandler : ICommandHandler<UpdateCountryCommand, Country>
     {

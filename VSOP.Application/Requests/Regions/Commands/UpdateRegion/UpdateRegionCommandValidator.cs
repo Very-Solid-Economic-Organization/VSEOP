@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using VSOP.Application.Requests.Worlds.Commads.CreateWorld;
 
-namespace VSOP.Application.Requests.Regions.Commands.UpdateRegionCommands;
+namespace VSOP.Application.Requests.Regions.Commands.UpdateRegion;
 
 internal class UpdateRegionCommandValidator : AbstractValidator<UpdateRegionCommand>
 {

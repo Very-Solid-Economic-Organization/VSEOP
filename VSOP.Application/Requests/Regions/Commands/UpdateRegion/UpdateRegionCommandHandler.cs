@@ -7,7 +7,7 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Regions.Commands.UpdateRegionCommands;
+namespace VSOP.Application.Requests.Regions.Commands.UpdateRegion;
 
 internal sealed class UpdateRegionCommandHandler : ICommandHandler<UpdateRegionCommand, Region>
 {

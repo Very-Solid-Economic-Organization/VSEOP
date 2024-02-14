@@ -43,8 +43,10 @@ public class WorldsController : ApiController
     /// </remarks>
     /// <returns>Объект Мир найденный по заданному Id</returns>
     /// <response code="200">Объект Мир найденный по заданному Id</response>
+    /// <response code="204">Если в базе данный объект мира по Id был не найден</response>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new GetWorldByIdQuery(id), cancellationToken));
@@ -63,8 +65,7 @@ public class WorldsController : ApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> Create([FromBody] CreateWorldRequest request, CancellationToken cancellationToken)
     {
-        Result<World> result = await Sender.Send(new CreateWorldCommand(request.Name), cancellationToken);
-        return HandleResult(result);
+        return HandleResult(await Sender.Send(new CreateWorldCommand(request.Name), cancellationToken));
     }
 
     /// <summary>
@@ -82,7 +83,6 @@ public class WorldsController : ApiController
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)] //Возможно тоже NoContent
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        Result result = await Sender.Send(new RemoveWorldCommand(id), cancellationToken);
-        return HandleResult(result);
+        return HandleResult(await Sender.Send(new RemoveWorldCommand(id), cancellationToken));
     }
 }

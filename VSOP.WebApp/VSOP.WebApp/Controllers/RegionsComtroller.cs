@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSOP.Application.Requests.Regions.Commands.CreateRegionCommands;
-using VSOP.Application.Requests.Regions.Commands.RemoveRegionCommands;
+using VSOP.Application.Requests.Regions.Commands.CreateRegion;
+using VSOP.Application.Requests.Regions.Commands.RemoveRegion;
 using VSOP.Application.Requests.Regions.Queries.GetRegionById;
 using VSOP.Contracts.Regions;
 using VSOP.Domain.DbModels.Regions;
@@ -27,21 +27,18 @@ public class RegionsComtroller : ApiController
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        Result<Region> result = await Sender.Send(new GetRegionByIdQuery(id), cancellationToken);
-        return HandleResult(result);
+        return HandleResult(await Sender.Send(new GetRegionByIdQuery(id), cancellationToken));
     }
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateRegionRequest request, CancellationToken cancellationToken)
     {
-        Result<Region> result = await Sender.Send(new CreateRegionCommand(request.CountryId, request.Name), cancellationToken);
-        return HandleResult(result);
+        return HandleResult(await Sender.Send(new CreateRegionCommand(request.CountryId, request.Name), cancellationToken));
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        Result result = await Sender.Send(new RemoveRegionCommand(id), cancellationToken);
-        return HandleResult(result);
+        return HandleResult(await Sender.Send(new RemoveRegionCommand(id), cancellationToken));
     }
 }

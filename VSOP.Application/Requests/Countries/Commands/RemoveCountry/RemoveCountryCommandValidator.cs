@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace VSOP.Application.Requests.Countries.Commands.CreateCountry;
+namespace VSOP.Application.Requests.Countries.Commands.RemoveCountry;
 
 internal class RemoveCountryCommandValidator : AbstractValidator<RemoveCountryCommand>
 {

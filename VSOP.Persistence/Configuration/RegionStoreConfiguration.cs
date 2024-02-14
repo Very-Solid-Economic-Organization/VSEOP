@@ -10,7 +10,7 @@ internal class RegionStoreConfiguration : IEntityTypeConfiguration<RegionStore>
     {
         builder.HasKey(x => x.Id);
 
-        builder.HasOne(x => x.Region)
+        builder.HasOne<Region>()
             .WithOne(x => x.RegionStore)
             .HasForeignKey<RegionStore>(x => x.RegionId)
             .IsRequired()

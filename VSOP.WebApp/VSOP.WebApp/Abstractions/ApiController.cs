@@ -29,7 +29,7 @@ public abstract class ApiController : ControllerBase
         if (result.Code is HttpStatusCode.OK)
             return Ok(result.Value);
 
-        else if(result.Code is HttpStatusCode.Created) //TODO: Ещё подумать
+        else if (result.Code is HttpStatusCode.Created) //TODO: Ещё подумать
             return CreatedAtAction(nameof(T), result.Value);
 
         return HandleNotOkResult(result);
@@ -45,16 +45,23 @@ public abstract class ApiController : ControllerBase
 
     IActionResult HandleNotOkResult(Result result)
     {
+        var res = result.GetType();
         switch (result.Code) //TODO : добавить другие необходимые статус коды
         {
             case HttpStatusCode.NoContent: return NoContent();
 
             case HttpStatusCode.UnprocessableContent:
-                return UnprocessableEntity(
+                if (result.GetType() == typeof(Result) || result.GetType().BaseType == typeof(Result))
+                    return UnprocessableEntity(
                 CreateProblemDetails(
-                    "Validation failure", StatusCodes.Status422UnprocessableEntity,
-                    result.Error,
-                    ((IValidationResult)result).Errors));
+                    "Unprocessable Content", StatusCodes.Status422UnprocessableEntity,
+                    result.Error));
+                else
+                    return UnprocessableEntity(
+                    CreateProblemDetails(
+                        "Validation failure", StatusCodes.Status422UnprocessableEntity,
+                        result.Error,
+                        ((IValidationResult)result).Errors));
 
             case HttpStatusCode.BadRequest:
                 return BadRequest(

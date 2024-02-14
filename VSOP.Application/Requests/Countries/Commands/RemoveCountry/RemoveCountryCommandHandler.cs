@@ -6,7 +6,7 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Countries.Commands.CreateCountry
+namespace VSOP.Application.Requests.Countries.Commands.RemoveCountry
 {
     internal sealed class RemoveCountryCommandHandler : ICommandHandler<RemoveCountryCommand>
     {
@@ -25,7 +25,7 @@ namespace VSOP.Application.Requests.Countries.Commands.CreateCountry
 
             if (entity == null)
                 return Result.Failure(new Error($"No {typeof(Country)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
-            
+
             _repository.Remove(entity);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);

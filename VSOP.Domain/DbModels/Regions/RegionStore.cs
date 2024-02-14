@@ -14,8 +14,6 @@ public class RegionStore : Entity, IEquatable<RegionStore>
 
     public Guid RegionId { get; private init; }
 
-    public Region Region { get; private set; }
-
     public static RegionStore Create(Guid regionId)
     {
         if (regionId == Guid.Empty)

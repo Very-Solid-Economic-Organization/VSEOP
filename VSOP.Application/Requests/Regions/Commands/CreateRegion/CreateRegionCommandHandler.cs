@@ -7,7 +7,7 @@ using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Regions.Commands.CreateRegionCommands;
+namespace VSOP.Application.Requests.Regions.Commands.CreateRegion;
 
 internal sealed class CreateRegionCommandHandler : ICommandHandler<CreateRegionCommand, Region>
 {
@@ -24,7 +24,7 @@ internal sealed class CreateRegionCommandHandler : ICommandHandler<CreateRegionC
 
     public async Task<Result<Region>> Handle(CreateRegionCommand request, CancellationToken cancellationToken)
     {
-        if(! await _countryRepository.AnyAsync(x=>x.Id==request.countryId, cancellationToken))
+        if (!await _countryRepository.AnyAsync(x => x.Id == request.countryId, cancellationToken))
             return Result.Failure<Region>(new Error($"{nameof(Country)} was not found by Id - {request.countryId}"), HttpStatusCode.UnprocessableContent);
 
         var entity = Region.Create(request.name, request.countryId);

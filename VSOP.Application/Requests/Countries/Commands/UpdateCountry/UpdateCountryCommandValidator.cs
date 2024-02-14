@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace VSOP.Application.Requests.Countries.Commands.CreateCountry;
+namespace VSOP.Application.Requests.Countries.Commands.UpdateCountry;
 
 internal class UpdateCountryCommandValidator : AbstractValidator<UpdateCountryCommand>
 {
