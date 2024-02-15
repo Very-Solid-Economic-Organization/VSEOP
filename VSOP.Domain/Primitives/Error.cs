@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace VSOP.Domain.Primitives;
+﻿namespace VSOP.Domain.Primitives;
 
 /// <summary>Объект ошибки</summary>
 public class Error : ValueObject //Осознать необъодимость

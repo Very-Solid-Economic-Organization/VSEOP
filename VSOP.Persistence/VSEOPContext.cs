@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Producers;
 
 namespace VSOP.Persistence;
 

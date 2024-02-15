@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Regions;
-using VSOP.Domain.DbModels.Worlds;
-using VSOP.Domain.Primitives;
+﻿using VSOP.Domain.DbModels.Regions;
 
 namespace VSOP.Persistence.Repositories;
 

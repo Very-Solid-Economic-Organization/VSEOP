@@ -6,7 +6,6 @@ using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
-using VSOP.Domain.Primitives;
 using VSOP.Persistence.Repositories;
 
 namespace VSOP.Persistence;
@@ -30,6 +29,7 @@ public static class DependencyInjection
         services.AddScoped<IRegionRepository, RegionRepository>();
         services.AddScoped<IRegionStoreRepository, RegionStoreRepository>();
         services.AddScoped<ICommodityRepository, CommodityRepository>();
+        services.AddScoped<IStoredCommodityRepository, StoredCommodityRepository>();
         #endregion
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();

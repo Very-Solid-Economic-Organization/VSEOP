@@ -2,7 +2,6 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Countries;
-using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
@@ -27,7 +26,7 @@ namespace VSOP.Application.Requests.Countries.Commands.CreateCountry
             if (!await _worldRepository.AnyAsync(x => x.Id == request.WorldId, cancellationToken))
                 return Result.Failure<Country>(new Error($"{nameof(World)} was not found by Id - {request.WorldId}"), HttpStatusCode.UnprocessableContent);
 
-            var entity = Country.Create(request.name,request.WorldId);
+            var entity = Country.Create(request.name, request.WorldId);
 
             await _countryRepository.AddAsync(entity, cancellationToken);
 

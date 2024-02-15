@@ -1,9 +1,7 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
-using VSOP.Application.Requests.Worlds.Commads.UpdateWorld;
 using VSOP.Domain.DbModels.Regions;
-using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
