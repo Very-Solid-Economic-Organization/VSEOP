@@ -17,6 +17,12 @@ public class World : Entity
     /// <summary>Наименование</summary>
     public string Name { get; private set; }
 
+    /// <summary>Дата и время начала мира</summary>
+    public  DateTime BeginingOfTheTimeLine { get; set; }
+
+    /// <summary>Текущая дата и время мира</summary>
+    public DateTime CurrentDateTime { get; set; }
+
     //public Guid MasterId { get; private init; } //TODO: implement
 
     /// <summary>Список стран относящихся к данному миру</summary>
