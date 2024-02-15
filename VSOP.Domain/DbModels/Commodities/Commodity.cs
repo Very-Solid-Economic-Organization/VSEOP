@@ -38,6 +38,15 @@ public class Commodity : Entity, IEquatable<Commodity>
         return new(Guid.NewGuid(), worldId, name);
     }
 
+    public void Update(string? name/*, Guid? worldId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
+
+        //if (worldId != null && worldId != Guid.Empty)
+        //    WorldId = worldId
+    }
+
     public bool Equals(Commodity? other)
     {
         return Id == other?.Id;
