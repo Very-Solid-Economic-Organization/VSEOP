@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VSOP.Application.Requests.Regions.Commands.CreateRegion;
 using VSOP.Application.Requests.Regions.Commands.RemoveRegion;
+using VSOP.Application.Requests.Regions.Commands.UpdateRegion;
 using VSOP.Application.Requests.Regions.Queries.GetRegionById;
 using VSOP.Contracts.Regions;
 using VSOP.WebApp.Abstractions;
@@ -42,6 +43,21 @@ public class RegionsController(ISender sender) : ApiController(sender)
     {
         return HandleResult(await Sender.Send(new CreateRegionCommand(request.CountryId, request.Name), cancellationToken));
     }
+
+    /// <summary>
+    /// Обновить объект Региона
+    /// </summary>
+    /// <param name="id">Id объекта для Региона для обновления</param>
+    /// <param name="request">Объект параметров для обновления региона</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Обновленный объект Региона</response>
+    /// <response code="422">Ошибка валидации или объект не найден по Id</response>
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateRegionRequest request, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new UpdateRegionCommand(id, request.Name), cancellationToken));
+    }
+
 
     /// <summary>
     /// Удалить объект Региона найденный по указанному Id

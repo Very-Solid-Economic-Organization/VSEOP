@@ -4,7 +4,8 @@ using VSOP.Domain.DbModels.Regions;
 
 namespace VSOP.Application.Requests.StoredCommodities.Commands.UpdateStoredCommodity;
 
-public sealed record UpdateStoredCommodityCommand(Guid Id,
+public sealed record UpdateStoredCommodityCommand(
+    Guid Id,
     float quantity,
     ulong selfCost,
     ulong price,

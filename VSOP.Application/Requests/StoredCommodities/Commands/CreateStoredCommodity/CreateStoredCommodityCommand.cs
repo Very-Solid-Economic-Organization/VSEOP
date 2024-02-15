@@ -4,7 +4,8 @@ using VSOP.Domain.DbModels.Regions;
 
 namespace VSOP.Application.Requests.StoredCommodities.Commands.CreateStoredCommodity;
 
-public sealed record CreateStoredCommodityCommand(Guid commodityId,
+public sealed record CreateStoredCommodityCommand(
+    Guid commodityId,
     float quantity,
     ulong selfCost,
     ulong price,

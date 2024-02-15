@@ -5,7 +5,6 @@ using VSOP.Domain.Primitives.Results;
 
 namespace VSOP.Application.Requests.Worlds.Queries.GetWorldById;
 
-
 internal sealed class GetWorldByIdQueryHandler : IQueryHandler<GetWorldByIdQuery, World>
 {
     private readonly IWorldRepository _repository;

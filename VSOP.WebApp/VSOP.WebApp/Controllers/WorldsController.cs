@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VSOP.Application.Requests.Worlds.Commads.CreateWorld;
 using VSOP.Application.Requests.Worlds.Commads.RemoveWorld;
+using VSOP.Application.Requests.Worlds.Commads.UpdateWorld;
 using VSOP.Application.Requests.Worlds.Queries.GetWorldById;
 using VSOP.Application.Requests.Worlds.Queries.GetWorldList;
 using VSOP.Contracts.Worlds;
@@ -14,7 +15,7 @@ public class WorldsController(ISender sender) : ApiController(sender)
 {
 
     /// <summary>
-    /// Возвращает список всех Миров
+    /// Получить список всех Миров
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <remarks>
@@ -25,16 +26,15 @@ public class WorldsController(ISender sender) : ApiController(sender)
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new GetWorldListQuery(), cancellationToken));
     }
 
     /// <summary>
-    /// Возвращает объект Мира найденный по указанному Id
+    /// Получить объект Мира найденный по указанному Id
     /// </summary>
-    /// <param name="id">Id мира</param>
+    /// <param name="id">Id Мира</param>
     /// <param name="cancellationToken"></param>
     /// <response code="200">Объект Мир найденный по заданному Id</response>
     /// <response code="204">Если объект Мира по указанному Id не был найден</response>
@@ -49,7 +49,7 @@ public class WorldsController(ISender sender) : ApiController(sender)
     }
 
     /// <summary>
-    /// Создает новый объект Мира
+    /// Создать новый объект Мира
     /// </summary>
     /// <param name="request">Объект принимаемых параметров</param>
     /// <param name="cancellationToken"></param>
@@ -64,9 +64,23 @@ public class WorldsController(ISender sender) : ApiController(sender)
     }
 
     /// <summary>
-    /// Удаляет объект Мир найденный по заданному Id
+    /// Обновить объект Мира найденный по переданному Id
     /// </summary>
-    /// <param name="id">Id объекта для удаление</param>
+    /// <param name="id">Id Мира</param>
+    /// <param name="request">Объект принимаемых параметров</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Обновленный объект Мира</response>
+    /// <response code="422">Если произошла ошибка валидации параметров переданного объекта или объект был не найден по Id</response>
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateWorldRequest request, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new UpdateWorldCommand(id, request.Name), cancellationToken));
+    }
+
+    /// <summary>
+    /// Удалить объект Мир найденный по заданному Id
+    /// </summary>
+    /// <param name="id">Id объекта</param>
     /// <param name="cancellationToken"></param>
     /// <response code="204">При успешном удалении Мира</response>
     /// <response code="422">Если по переданному Id не было найденно записей или произошла ошибка валидации</response>

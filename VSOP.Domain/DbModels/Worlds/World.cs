@@ -18,7 +18,7 @@ public class World : Entity
     public string Name { get; private set; }
 
     /// <summary>Дата и время начала мира</summary>
-    public  DateTime BeginingOfTheTimeLine { get; set; }
+    public DateTime BeginingOfTheTimeLine { get; set; }
 
     /// <summary>Текущая дата и время мира</summary>
     public DateTime CurrentDateTime { get; set; }

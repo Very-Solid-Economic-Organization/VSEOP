@@ -10,5 +10,5 @@ public class CreateStoredCommodityRequest
 
     public ulong Price { get; set; }
 
-    public int Demmand { get; set; }
+    public int CurrentDemand { get; set; }
 }

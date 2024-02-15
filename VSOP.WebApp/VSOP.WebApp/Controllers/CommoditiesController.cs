@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VSOP.Application.Requests.Commodities.Commands.CreateCommodity;
 using VSOP.Application.Requests.Commodities.Commands.RemoveCommodity;
+using VSOP.Application.Requests.Commodities.Commands.UpdateCommodity;
 using VSOP.Application.Requests.Commodities.Queries.GetCommodityById;
 using VSOP.Contracts.Commodities;
 using VSOP.WebApp.Abstractions;
@@ -33,7 +34,7 @@ public class CommoditiesController(ISender sender) : ApiController(sender)
     /// </summary>
     /// <param name="request">Объект с параметрами для создания</param>
     /// <param name="cancellationToken"></param>
-    /// <response code="200">Объект Предмета Потребления создан</response>
+    /// <response code="200">Созданный Объект Предмета Потребления</response>
     /// <response code="422">Ошибка валидации</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -41,6 +42,22 @@ public class CommoditiesController(ISender sender) : ApiController(sender)
     public async Task<IActionResult> Create([FromBody] CreateCommodityRequest request, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new CreateCommodityCommand(request.WorldId, request.Name), cancellationToken));
+    }
+
+    /// <summary>
+    /// Обновить объект Предмета Потребления по переданному Id
+    /// </summary>
+    /// <param name="id">Id Предмета Потребления</param>
+    /// <param name="request">Объект с параметрами для обновления</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Обновленный объект Предмета Потребления</response>
+    /// <response code="422">Ошибка валидации</response>
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCommodityRequest request, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new UpdateCommodityCommand(id, request.Name)));
     }
 
     /// <summary>

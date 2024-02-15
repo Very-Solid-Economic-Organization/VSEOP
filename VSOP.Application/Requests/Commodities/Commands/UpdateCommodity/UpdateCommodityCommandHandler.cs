@@ -22,8 +22,8 @@ namespace VSOP.Application.Requests.Commodities.Commands.UpdateCommodity
         {
             var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
             if (entity == null)
-                return Result.Failure<Commodity>(new Error($"No {nameof(Commodity)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
-
+                return Result.Failure<Commodity>(new Error(
+                    $"No {nameof(Commodity)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
             entity.Update(request.name);
 
             _repository.Update(entity);
