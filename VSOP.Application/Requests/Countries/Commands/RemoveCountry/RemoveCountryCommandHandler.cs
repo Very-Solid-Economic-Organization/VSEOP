@@ -2,7 +2,6 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Countries;
-using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
@@ -24,7 +23,7 @@ namespace VSOP.Application.Requests.Countries.Commands.RemoveCountry
             var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
             if (entity == null)
-                return Result.Failure(new Error($"No {typeof(Country)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
+                return Result.Failure(new Error($"No {nameof(Country)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
             _repository.Remove(entity);
 

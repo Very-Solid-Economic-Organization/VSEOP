@@ -1,10 +1,7 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
-using VSOP.Application.Requests.Worlds.Commads.UpdateWorld;
 using VSOP.Domain.DbModels.Commodities;
-using VSOP.Domain.DbModels.Countries;
-using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
@@ -25,7 +22,7 @@ namespace VSOP.Application.Requests.Commodities.Commands.UpdateCommodity
         {
             var entity = await _repository.GetByIdAsync(request.Id, cancellationToken);
             if (entity == null)
-                return Result.Failure<Commodity>(new Error($"No {typeof(Commodity)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
+                return Result.Failure<Commodity>(new Error($"No {nameof(Commodity)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
             entity.Update(request.name);
 

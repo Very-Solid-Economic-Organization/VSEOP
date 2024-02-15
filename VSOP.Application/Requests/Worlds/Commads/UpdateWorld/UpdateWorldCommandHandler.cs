@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using System.Net;
+﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Worlds;

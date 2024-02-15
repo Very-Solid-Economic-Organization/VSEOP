@@ -16,14 +16,14 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
         Price = price;
         CurrentDemand = currentDemand;
     }
-   
+
     /// <summary>Для efcore</summary>
     private StoredCommodity(Guid id, Guid commodityId, float quantity, ulong selfCost, ulong price) : base(id)
     {
         CommodityId = commodityId;
         Quantity = quantity;
         SelfCost = selfCost;
-        Price = price;   
+        Price = price;
     } //TODO: осознать как обойти проблему
 
     /// <summary>Id предмета потребления к которому относится данных хранимый предмет потребления</summary>
@@ -31,7 +31,7 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
     public Commodity Commodity { get; private set; }
 
     /// <summary>Кол-во предметов потребления данного типа хранящихся на складе</summary>
-    public float Quantity { get; private init; } = 0;
+    public float Quantity { get; private set; } = 0;
 
     /// <summary>Себестоимость данного хранимого предмета потребления</summary>
     public ulong SelfCost { get; private set; } = 0;
@@ -59,6 +59,25 @@ public class StoredCommodity : Entity, IEquatable<StoredCommodity>
             throw new ValidationException("Quantity value can't be negative");
 
         return new(Guid.NewGuid(), commodityId, quantity, selfCost, price, demand);
+    }
+
+    public void Update(float? quantity, ulong? selfCost, ulong? price, Demand? currentDemand)
+    {
+        if (quantity != null)
+            if (IsNegative((float)quantity))
+                throw new ValidationException("Quantity value can't be negative");
+            else
+                Quantity = (float)quantity;
+
+        if (selfCost != null) SelfCost = (ulong)selfCost;
+
+        if (price != null) Price = (ulong)price;
+
+        if (currentDemand != null)
+            if (!Enum.IsDefined(currentDemand.Value))
+                throw new ValidationException("Quantity value can't be negative");
+            else
+                CurrentDemand = (Demand)currentDemand;
     }
 
     private static bool IsNegative(float value) =>

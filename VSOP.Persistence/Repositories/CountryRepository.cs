@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Countries;
+﻿using VSOP.Domain.DbModels.Countries;
 
 namespace VSOP.Persistence.Repositories;
 
