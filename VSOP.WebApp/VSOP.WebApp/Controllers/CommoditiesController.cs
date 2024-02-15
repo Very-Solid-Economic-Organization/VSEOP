@@ -1,5 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using VSOP.Application.Requests.Commodities.Commands.CreateCommodity;
+using VSOP.Application.Requests.Commodities.Commands.RemoveCommodity;
+using VSOP.Application.Requests.Commodities.Queries.GetCommodityById;
+using VSOP.Contracts.Commodities;
 using VSOP.WebApp.Abstractions;
 
 namespace VSOP.WebApp.Controllers;
@@ -19,24 +23,21 @@ public class CommoditiesController : ApiController
     //    return HandleResult(result);
     //}
 
-    //[HttpGet("{id:guid}")]
-    //public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
-    //{
-    //    Result<Commodity> result = await Sender.Send(new GetCommodityByIdQuery(id), cancellationToken);
-    //    return HandleResult(result);
-    //}
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new GetCommodityByIdQuery(id), cancellationToken));
+    }
 
-    //[HttpPost]
-    //public async Task<IActionResult> Create([FromBody] CreateCommodityRequest request, CancellationToken cancellationToken)
-    //{
-    //    Result<Commodity> result = await Sender.Send(new CreateCommodityCommand(request.Name), cancellationToken);
-    //    return HandleResult(result);
-    //}
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateCommodityRequest request, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new CreateCommodityCommand(request.WorldId, request.Name), cancellationToken));
+    }
 
-    //[HttpDelete("{id:guid}")]
-    //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
-    //{
-    //    Result result = await Sender.Send(new RemoveCommodityCommand(id), cancellationToken);
-    //    return HandleResult(result);
-    //}
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        return HandleResult(await Sender.Send(new RemoveCommodityCommand(id), cancellationToken));
+    }
 }

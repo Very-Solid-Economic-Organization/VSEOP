@@ -12,11 +12,6 @@ internal class StoredCommodityConfiguration : IEntityTypeConfiguration<StoredCom
     {
         builder.HasKey(sc => sc.Id);
 
-       builder.HasOne<Commodity>()
-            .WithMany()
-            .HasForeignKey(sc => sc.CommodityId)
-            .OnDelete(DeleteBehavior.Cascade);
-
         //builder.Property(x => x.CurrentDemand).HasConversion(c => c.ToString(), c => Enum.Parse<Demand>(c));           
     }
 }

@@ -10,10 +10,10 @@ internal class RegionConfiguration : IEntityTypeConfiguration<Region>
     {
         builder.HasKey(r => r.Id);
 
-        builder.HasOne(r => r.Country)
-            .WithMany(c => c.Regions)
-            .HasForeignKey(c => c.CountryId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
+        //builder.HasOne(r => r.Country)
+        //    .WithMany(c => c.Regions)
+        //    .HasForeignKey(c => c.CountryId)
+        //    .IsRequired()
+        //    .OnDelete(DeleteBehavior.Cascade);
     }
 }

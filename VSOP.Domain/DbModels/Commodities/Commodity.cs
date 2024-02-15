@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Domain.Primitives;
 

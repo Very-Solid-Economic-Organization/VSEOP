@@ -11,10 +11,6 @@ internal class ProcessedCommodityConfiguration : IEntityTypeConfiguration<Proces
     {
         builder.HasKey(pc => pc.Id);
 
-        builder.HasOne<Commodity>()
-            .WithMany()
-            .HasForeignKey(pc => pc.CommodityId);
-
         builder.HasOne(pc => pc.Process)
             .WithMany(p => p.ProcessedCommodities)
             .HasForeignKey(pc => pc.ProcessId)
