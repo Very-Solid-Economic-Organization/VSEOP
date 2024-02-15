@@ -9,32 +9,50 @@ using VSOP.WebApp.Abstractions;
 namespace VSOP.WebApp.Controllers;
 
 [Route("api/[controller]")]
-public class RegionsController : ApiController
+public class RegionsController(ISender sender) : ApiController(sender)
 {
-    public RegionsController(ISender sender) : base(sender)
-    {
-    }
-
-    //[HttpGet]
-    //public async Task<IActionResult> GetAll(CancellationToken cancellationToken) //TODO: дождаться создания
-    //{
-    //    Result<List<Region>> result = await Sender.Send(new GetRegionsListQuery(), cancellationToken);
-    //    return HandleResult(result);
-    //}
-
+    /// <summary>
+    /// Получить объект Региона по указанному Id
+    /// </summary>
+    /// <param name="id">Id Региона</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Объект Региона найденный по указанному Id</response>
+    /// <response code="204">Объект мира по заданному Id не был найден</response>
+    /// <response code="422">Ошибка валидации</response>
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new GetRegionByIdQuery(id), cancellationToken));
     }
 
+    /// <summary>
+    /// Создать новый объект Региона
+    /// </summary>
+    /// <param name="request">Объект параметров для создания региона</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Объект Региона создан</response>
+    /// <response code="422">Ошибка валидации</response>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Create([FromBody] CreateRegionRequest request, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new CreateRegionCommand(request.CountryId, request.Name), cancellationToken));
     }
 
+    /// <summary>
+    /// Удалить объект Региона найденный по указанному Id
+    /// </summary>
+    /// <param name="id">Id региона</param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="204">Объект Региона удален</response>
+    /// <response code="422">Ошибка валидации</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new RemoveRegionCommand(id), cancellationToken));

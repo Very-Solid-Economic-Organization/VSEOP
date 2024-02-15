@@ -8,16 +8,16 @@ namespace VSOP.Application.Requests.Countries.Queries.GetCountryById;
 
 internal sealed class GetCountryByIdQueryHandler : IQueryHandler<GetCountryByIdQuery, Country>
 {
-    private readonly ICountryRepository _Repository;
+    private readonly ICountryRepository _repository;
 
-    public GetCountryByIdQueryHandler(ICountryRepository Repository)
+    public GetCountryByIdQueryHandler(ICountryRepository repository)
     {
-        _Repository = Repository;
+        _repository = repository;
     }
 
     public async Task<Result<Country>> Handle(GetCountryByIdQuery request, CancellationToken cancellationToken)
     {
-        var result = await _Repository.GetByIdAsync(request.Id, cancellationToken);
+        var result = await _repository.GetByIdAsync(request.Id, cancellationToken);
         if (result is null)
             return Result.Success(result, HttpStatusCode.NoContent);
 

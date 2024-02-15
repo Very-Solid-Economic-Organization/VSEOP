@@ -16,6 +16,9 @@ public class StoredCommoditiesController : ApiController
     }
 
     //[HttpGet("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     //{
     //    Result<StoredCommodity> result = await Sender.Send(new GetStoredCommodityByIdQuery(id), cancellationToken);
@@ -23,6 +26,8 @@ public class StoredCommoditiesController : ApiController
     //}
 
     //[HttpPost]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Create([FromBody] CreateStoredCommodityRequest request, CancellationToken cancellationToken)
     //{
     //    Result<StoredCommodity> result = await Sender.Send(new CreateStoredCommodityCommand(request.Name), cancellationToken);
@@ -30,6 +35,8 @@ public class StoredCommoditiesController : ApiController
     //}
 
     //[HttpDelete("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     //{
     //    Result result = await Sender.Send(new RemoveStoredCommodityCommand(id), cancellationToken);

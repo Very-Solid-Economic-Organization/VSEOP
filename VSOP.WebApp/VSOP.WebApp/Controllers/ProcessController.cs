@@ -15,14 +15,10 @@ public class ProcessController : ApiController
     {
     }
 
-    //[HttpGet]
-    //public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
-    //{
-    //    Result<List<Process>> result = await Sender.Send(new GetProcessListQuery(), cancellationToken);
-    //    return HandleResult(result);
-    //}
-
     //[HttpGet("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     //{
     //    Result<Process> result = await Sender.Send(new GetProcessByIdQuery(id), cancellationToken);
@@ -30,6 +26,8 @@ public class ProcessController : ApiController
     //}
 
     //[HttpPost]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Create([FromBody] CreateProcessRequest request, CancellationToken cancellationToken)
     //{
     //    Result<Process> result = await Sender.Send(new CreateProcessCommand(request.Name), cancellationToken);
@@ -37,6 +35,8 @@ public class ProcessController : ApiController
     //}
 
     //[HttpDelete("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     //{
     //    Result result = await Sender.Send(new RemoveProcessCommand(id), cancellationToken);

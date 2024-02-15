@@ -15,14 +15,11 @@ public class FactoriesController : ApiController
     {
     }
 
-    //[HttpGet]
-    //public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
-    //{
-    //    Result<List<Factory>> result = await Sender.Send(new GetFactoryListQuery(), cancellationToken);
-    //    return HandleResult(result);
-    //}
 
     //[HttpGet("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     //{
     //    Result<Factory> result = await Sender.Send(new GetFactoryByIdQuery(id), cancellationToken);
@@ -30,6 +27,8 @@ public class FactoriesController : ApiController
     //}
 
     //[HttpPost]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Create([FromBody] CreateFactoryRequest request, CancellationToken cancellationToken)
     //{
     //    Result<Factory> result = await Sender.Send(new CreateFactoryCommand(request.Name), cancellationToken);
@@ -37,6 +36,8 @@ public class FactoriesController : ApiController
     //}
 
     //[HttpDelete("{id:guid}")]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     //public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     //{
     //    Result result = await Sender.Send(new RemoveFactoryCommand(id), cancellationToken);
