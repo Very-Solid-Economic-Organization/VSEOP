@@ -17,7 +17,7 @@ public class Factory : Producer
     /// <param name="name">Наименование фабрики</param>
     /// <returns>Новый объект фабрики</returns>
     /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
-    public Factory Create(Guid regionId, string name)
+    public static Factory Create(Guid regionId, string name)
     {
         if (regionId == Guid.Empty)
             throw new ValidationException("Region Id can't be empty");
@@ -26,5 +26,13 @@ public class Factory : Producer
             throw new ValidationException("Name can't be null or empty");
 
         return new Factory(Guid.NewGuid(), regionId, name);
+    }
+    public void Update(string? name/*, Guid? regionId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
+
+        //if (regionId != null && regionId != Guid.Empty)
+        //    RegionId = regionId
     }
 }

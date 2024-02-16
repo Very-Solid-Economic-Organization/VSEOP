@@ -13,10 +13,10 @@ public abstract class Producer : Entity, IEquatable<Producer>
     }
 
     /// <summary>Наименование</summary>
-    public string Name { get; private set; }
+    public string Name { get; protected set; }
 
     /// <summary>Id региона к которому принадлежит производящий объект</summary>
-    public Guid RegionId { get; private init; }
+    public Guid RegionId { get; protected set; }
     public Region Region { get; private set; }
 
     /// <summary>Список процессов принадлежащих к производящему объект</summary>
