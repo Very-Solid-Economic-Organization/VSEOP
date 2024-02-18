@@ -36,7 +36,7 @@ public class Process : Entity, IEquatable<Process>
     public ulong ProcessTickrate { get; private set; }
 
     /// <summary>Список производств в которых используется данных тип производства</summary>
-    public HashSet<Producer> Producers { get; private set; }
+    //public HashSet<Producer> Producers { get; private set; }
 
     public IList<ProducerProcess> ProducerProcesses { get; set; }
 
