@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Countries;
+using VSOP.Domain.DbModels.Factories;
+using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.DbModels.Worlds;
 using VSOP.Persistence.Repositories;
@@ -30,6 +32,8 @@ public static class DependencyInjection
         services.AddScoped<IRegionStoreRepository, RegionStoreRepository>();
         services.AddScoped<ICommodityRepository, CommodityRepository>();
         services.AddScoped<IStoredCommodityRepository, StoredCommodityRepository>();
+        services.AddScoped<IFactoryRepository, FactoryRepository>();
+        services.AddScoped<IProcessRepository, ProcessRepository>();
         #endregion
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();

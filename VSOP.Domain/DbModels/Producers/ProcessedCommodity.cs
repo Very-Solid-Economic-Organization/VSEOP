@@ -75,4 +75,15 @@ public class ProcessedCommodity : Entity
         if (quantity < 1)
             throw new ValidationException("Quantity cant't be zero or negative");
     }
+
+    /// <summary>
+    /// Метод валидации параметров для создания нового обрабатываемого предмета потребления
+    /// </summary>
+    /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
+    public void Update(float quantity)
+    {
+        if (quantity < 1)
+            throw new ValidationException("Quantity cant't be zero or negative");
+        Quantity = quantity;
+    }
 }

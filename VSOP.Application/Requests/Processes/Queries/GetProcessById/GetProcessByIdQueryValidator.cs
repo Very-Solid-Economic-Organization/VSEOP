@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace VSOP.Application.Requests.Commodities.Queries.GetCommodityById;
+namespace VSOP.Application.Requests.Processes.Queries.GetProcessById;
 internal class GetProcessByIdQueryValidator : AbstractValidator<GetProcessByIdQuery>
 {
     public GetProcessByIdQueryValidator()

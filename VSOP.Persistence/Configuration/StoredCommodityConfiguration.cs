@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VSOP.Domain.DbModels.Commodities;
-using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.DbModels.Regions;
 
 namespace VSOP.Persistence.Configuration;

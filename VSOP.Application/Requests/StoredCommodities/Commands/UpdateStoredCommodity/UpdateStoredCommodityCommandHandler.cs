@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
+using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
@@ -24,7 +25,7 @@ namespace VSOP.Application.Requests.StoredCommodities.Commands.UpdateStoredCommo
             if (entity == null)
                 return Result.Failure<StoredCommodity>(new Error($"No {nameof(StoredCommodity)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
 
-            entity.Update(request.quantity, request.selfCost, request.price, request.currentDemand);
+            entity.Update(request.quantity, request.selfCost, request.price, (Demand)request.currentDemand);
 
             _repository.Update(entity);
 

@@ -1,13 +1,11 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
-using VSOP.Domain.DbModels.Commodities;
-using VSOP.Domain.DbModels.Factories;
 using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Commodities.Commands.UpdateCommodity
+namespace VSOP.Application.Requests.Processes.Commands.UpdateProcess
 {
     internal sealed class UpdateProcessCommandHandler : ICommandHandler<UpdateProcessCommand, Process>
     {
@@ -26,7 +24,7 @@ namespace VSOP.Application.Requests.Commodities.Commands.UpdateCommodity
             if (entity == null)
                 return Result.Failure<Process>(new Error(
                     $"No {nameof(Process)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
-            entity.Update(request.processesCount,request.name);
+            entity.Update(request.processesCount, request.name);
 
             _repository.Update(entity);
 

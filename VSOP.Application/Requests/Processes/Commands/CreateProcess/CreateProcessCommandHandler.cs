@@ -3,7 +3,7 @@ using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Producers;
 using VSOP.Domain.Primitives.Results;
 
-namespace VSOP.Application.Requests.Commodities.Commands.CreateCommodity
+namespace VSOP.Application.Requests.Processes.Commands.CreateProcess
 {
     internal sealed class CreateProcessCommandHandler : ICommandHandler<CreateProcessCommand, Process>
     {

@@ -5,7 +5,6 @@ using VSOP.Application.Requests.StoredCommodities.Commands.RemoveStoredCommodity
 using VSOP.Application.Requests.StoredCommodities.Commands.UpdateStoredCommodity;
 using VSOP.Application.Requests.StoredCommodities.Queries.GetStoredCommodityById;
 using VSOP.Contracts.StoredCommodities;
-using VSOP.Domain.DbModels.Enums;
 using VSOP.WebApp.Abstractions;
 
 namespace VSOP.WebApp.Controllers;

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace VSOP.Application.Requests.Commodities.Commands.UpdateCommodity;
+namespace VSOP.Application.Requests.Processes.Commands.UpdateProcess;
 
 internal class UpdateProcessCommandValidator : AbstractValidator<UpdateProcessCommand>
 {

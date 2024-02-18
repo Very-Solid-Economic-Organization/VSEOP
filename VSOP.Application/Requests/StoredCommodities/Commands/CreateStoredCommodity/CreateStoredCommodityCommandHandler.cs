@@ -2,6 +2,7 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Commodities;
+using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
@@ -26,7 +27,7 @@ namespace VSOP.Application.Requests.StoredCommodities.Commands.CreateStoredCommo
             if (!await _commodityRepository.AnyAsync(x => x.Id == request.commodityId, cancellationToken))
                 return Result.Failure<StoredCommodity>(new Error($"{nameof(Commodity)} was not found by Id - {request.commodityId}"), HttpStatusCode.UnprocessableContent);
 
-            var entity = StoredCommodity.Create(request.commodityId, request.quantity, request.selfCost, request.price, request.currentDemand);
+            var entity = StoredCommodity.Create(request.commodityId, request.quantity, request.selfCost, request.price, (Demand)request.currentDemand);
 
             await _storedCommodityRepository.AddAsync(entity, cancellationToken);
 
