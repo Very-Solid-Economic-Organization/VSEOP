@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Radzen;
 using System.Reflection;
 using VSOP.Application;
 using VSOP.Persistence;
@@ -12,6 +13,7 @@ namespace VSOP.WebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             builder.Services.AddControllers();
 
             #region SolutionDI's
@@ -22,6 +24,7 @@ namespace VSOP.WebApp
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
+            builder.Services.AddRadzenComponents();
 
 
             builder.Services.AddEndpointsApiExplorer();
