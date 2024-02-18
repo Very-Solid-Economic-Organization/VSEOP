@@ -57,7 +57,7 @@ public class CommoditiesController(ISender sender) : ApiController(sender)
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCommodityRequest request, CancellationToken cancellationToken)
     {
-        return HandleResult(await Sender.Send(new UpdateCommodityCommand(id, request.Name)));
+        return HandleResult(await Sender.Send(new UpdateCommodityCommand(id, request.Name), cancellationToken));
     }
 
     /// <summary>

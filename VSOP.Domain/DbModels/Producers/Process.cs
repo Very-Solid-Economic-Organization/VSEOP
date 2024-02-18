@@ -32,6 +32,9 @@ public class Process : Entity, IEquatable<Process>
     /// <summary>Кол-во одновременно запущенных процессов данного типа</summary>
     public uint ProcessesCount { get; private set; } = 0;
 
+    /// <summary>Время затрачиваемое на производственный процесс в секундах</summary>
+    public ulong ProcessTickrate { get; private set; }
+
     /// <summary>Список производств в которых используется данных тип производства</summary>
     public HashSet<Producer> Producers { get; private set; }
 

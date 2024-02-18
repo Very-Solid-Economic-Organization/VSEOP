@@ -17,10 +17,10 @@ public abstract class Producer : Entity, IEquatable<Producer>
 
     /// <summary>Id региона к которому принадлежит производящий объект</summary>
     public Guid RegionId { get; protected set; }
-    public Region Region { get; private set; }
+    public Region Region { get; protected set; }
 
     /// <summary>Список процессов принадлежащих к производящему объект</summary>
-    public HashSet<Process> Processes { get; private set; } = new();
+    public HashSet<Process> Processes { get; protected set; } = new();
 
     public bool Equals(Producer? other)
     {
