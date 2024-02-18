@@ -7,12 +7,12 @@
 //{
 //    internal sealed class CreateTemplateCommandHandler : ICommandHandler<CreateTemplateCommand, Template>
 //    {
-//        private readonly ITemplateRepository _Repository;
+//        private readonly ITemplateRepository _repository;
 //        private readonly IUnitOfWork _unitOfWork;
 
 //        public CreateTemplateCommandHandler(ITemplateRepository repository, IUnitOfWork unitOfWork)
 //        {
-//            _Repository = repository;
+//            _repository = repository;
 //            _unitOfWork = unitOfWork;
 //        }
 
@@ -20,7 +20,7 @@
 //        {
 //            var newWorld = Template.Create(request.name);
 
-//            await _Repository.AddAsync(newWorld, cancellationToken);
+//            await _repository.AddAsync(newWorld, cancellationToken);
 
 //            await _unitOfWork.SaveChangesAsync(cancellationToken);
 

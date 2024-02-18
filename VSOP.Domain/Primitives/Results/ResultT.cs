@@ -1,4 +1,6 @@
-﻿namespace VSOP.Domain.Primitives.Results;
+﻿using System.Net;
+
+namespace VSOP.Domain.Primitives.Results;
 
 /// <summary>
 /// Результат какой-либо операции, с информацией о успешности с возможным значением или ошибкой.
@@ -6,7 +8,7 @@
 /// <typeparam name="TValue">Тип значения результата.</typeparam>
 public class Result<TValue> : Result
 {
-    private readonly TValue _value;
+    private readonly TValue? _value;
 
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="Result{TValueType}"/> класса с указанными параметрами.
@@ -15,8 +17,8 @@ public class Result<TValue> : Result
     /// <param name="isSuccess">Указатель успешности или неуспешности результата.</param>
     /// <param name="error">Объект ошибки.</param>
 
-    protected internal Result(TValue value, bool isSuccess, Error error)
-        : base(isSuccess, error)
+    protected internal Result(TValue? value, bool isSuccess, Error error, HttpStatusCode code)
+        : base(isSuccess, error, code)
         => _value = value;
 
     public static implicit operator Result<TValue>(TValue value) => Success(value);
@@ -26,7 +28,7 @@ public class Result<TValue> : Result
     /// </summary>
     /// <returns>Объект успешного результата если он успешный.</returns>
     /// <exception cref="InvalidOperationException"> когда <see cref="Result.IsFailure"/> is true.</exception>
-    public TValue Value => IsSuccess
+    public TValue? Value => IsSuccess
         ? _value
        : throw new InvalidOperationException("The value of a failure result can not be accessed.");
 }

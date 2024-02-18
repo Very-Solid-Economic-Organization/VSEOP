@@ -3,18 +3,24 @@ using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Producers;
 
+/// <summary>Базовое представление производящего объекта. (Например: фабрика, шахта, мануфактура и т.д)</summary>
 public abstract class Producer : Entity, IEquatable<Producer>
 {
-    protected Producer(Guid id, Guid regionId) : base(id)
+    protected Producer(Guid id, Guid regionId, string name) : base(id)
     {
         RegionId = regionId;
+        Name = name;
     }
 
-    public Guid RegionId { get; private init; }
+    /// <summary>Наименование</summary>
+    public string Name { get; protected set; }
 
+    /// <summary>Id региона к которому принадлежит производящий объект</summary>
+    public Guid RegionId { get; protected set; }
     public Region Region { get; private set; }
 
-    public List<Process> Processes { get; private init; } = new();
+    /// <summary>Список процессов принадлежащих к производящему объект</summary>
+    public HashSet<Process> Processes { get; private set; } = new();
 
     public bool Equals(Producer? other)
     {

@@ -29,9 +29,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse>
             .Select(validator => validator.Validate(request))
             .SelectMany(validationResult => validationResult.Errors)
             .Where(validationFailure => validationFailure is not null)
-            .Select(failure => new Error(
-                System.Net.HttpStatusCode.UnprocessableContent,
-                failure.ErrorMessage))
+            .Select(failure => new Error(failure.ErrorMessage))
             .Distinct()
             .ToArray();
 

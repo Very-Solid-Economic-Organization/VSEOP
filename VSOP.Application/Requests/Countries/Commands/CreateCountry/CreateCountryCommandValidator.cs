@@ -7,6 +7,6 @@ internal class CreateCountryCommandValidator : AbstractValidator<CreateCountryCo
     public CreateCountryCommandValidator()
     {
         RuleFor(x => x.WorldId).NotEmpty();
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.name).NotEmpty();
     }
 }

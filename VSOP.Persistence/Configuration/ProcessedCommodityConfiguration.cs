@@ -8,7 +8,7 @@ internal class ProcessedCommodityConfiguration : IEntityTypeConfiguration<Proces
 {
     public void Configure(EntityTypeBuilder<ProcessedCommodity> builder)
     {
-        builder.HasKey(pc=> pc.Id);
+        builder.HasKey(pc => pc.Id);
 
         builder.HasOne(pc => pc.Process)
             .WithMany(p => p.ProcessedCommodities)

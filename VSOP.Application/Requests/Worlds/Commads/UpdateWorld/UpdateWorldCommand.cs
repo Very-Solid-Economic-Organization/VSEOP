@@ -3,5 +3,5 @@ using VSOP.Domain.DbModels.Worlds;
 
 namespace VSOP.Application.Requests.Worlds.Commads.UpdateWorld
 {
-    public sealed record UpdateWorldCommand(Guid WorldGuid, string Name) : ICommand<World>;
+    public sealed record UpdateWorldCommand(Guid Id, string Name) : ICommand<World>;
 }

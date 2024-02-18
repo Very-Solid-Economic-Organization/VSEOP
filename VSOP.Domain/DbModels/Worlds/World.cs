@@ -5,6 +5,7 @@ using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Worlds;
 
+/// <summary>Объект мира</summary>
 public class World : Entity
 {
     private World(Guid id, string name/*, Guid masterId*/) : base(id)
@@ -13,14 +14,29 @@ public class World : Entity
         //MasterId = masterId;
     }
 
+    /// <summary>Наименование</summary>
     public string Name { get; private set; }
+
+    /// <summary>Дата и время начала мира</summary>
+    public DateTime BeginingOfTheTimeLine { get; set; }
+
+    /// <summary>Текущая дата и время мира</summary>
+    public DateTime CurrentDateTime { get; set; }
 
     //public Guid MasterId { get; private init; } //TODO: implement
 
+    /// <summary>Список стран относящихся к данному миру</summary>
     public HashSet<Country> Countries { get; private set; } = new();
 
+    /// <summary>Список предметов потребления относящихся к данному миру</summary>
     public HashSet<Commodity> Commodities { get; private set; } = new();
 
+    /// <summary>
+    /// Метод создания мира
+    /// </summary>
+    /// <param name="name">Наименование мира</param>
+    /// <returns>Новый объект мира</returns>
+    /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
     public static World Create(string name/*, Guid masterId*/)
     {
         if (string.IsNullOrEmpty(name))
@@ -32,18 +48,14 @@ public class World : Entity
         return new World(Guid.NewGuid(), name/*, masterId*/);
     }
 
-    //public World UpdateName(string name/*, Guid masterId*/)
-    //{
-    //    if (string.IsNullOrEmpty(name))
-    //        throw new ValidationException("Name property can't be null or empty");
+    public void Update(string? name/*, Guid? masterId*/)
+    {
+        if (!string.IsNullOrEmpty(name))
+            Name = name;
 
-    //    Name = name;
-
-    //    //if (masterId == Guid.Empty)
-    //    //    throw new ValidationException("Game master Id can't be empty");
-
-    //    return new World(Guid.NewGuid(), name/*, masterId*/);
-    //}
+        //if (masterId != null && masterId != Guid.Empty)
+        //    MasterId = masterId
+    }
 
     public bool Equals(Country? other)
     {

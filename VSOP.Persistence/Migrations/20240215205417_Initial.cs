@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -28,7 +27,9 @@ namespace VSOP.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BeginingOfTheTimeLine = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CurrentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,9 +108,9 @@ namespace VSOP.Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CommodityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<float>(type: "real", nullable: false),
-                    SelfCost = table.Column<long>(type: "bigint", nullable: false),
-                    Price = table.Column<long>(type: "bigint", nullable: false),
-                    CurrentDemand = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SelfCost = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    CurrentDemand = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -147,6 +148,7 @@ namespace VSOP.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false)
                 },
@@ -183,12 +185,12 @@ namespace VSOP.Persistence.Migrations
                 name: "ProcessProducer",
                 columns: table => new
                 {
-                    FactoriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProcessesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProcessesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProducersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcessProducer", x => new { x.FactoriesId, x.ProcessesId });
+                    table.PrimaryKey("PK_ProcessProducer", x => new { x.ProcessesId, x.ProducersId });
                     table.ForeignKey(
                         name: "FK_ProcessProducer_Process_ProcessesId",
                         column: x => x.ProcessesId,
@@ -196,8 +198,8 @@ namespace VSOP.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProcessProducer_Producers_FactoriesId",
-                        column: x => x.FactoriesId,
+                        name: "FK_ProcessProducer_Producers_ProducersId",
+                        column: x => x.ProducersId,
                         principalTable: "Producers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -224,9 +226,9 @@ namespace VSOP.Persistence.Migrations
                 column: "ProcessId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcessProducer_ProcessesId",
+                name: "IX_ProcessProducer_ProducersId",
                 table: "ProcessProducer",
-                column: "ProcessesId");
+                column: "ProducersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producers_RegionId",

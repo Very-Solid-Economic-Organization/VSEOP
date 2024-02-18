@@ -6,6 +6,6 @@ internal class RemoveWorldCommandValidator : AbstractValidator<RemoveWorldComman
 {
     public RemoveWorldCommandValidator()
     {
-        RuleFor(x => x.worldGuid).NotEmpty(); //TODO: Узнать работает ли это.
+        RuleFor(x => x.Id).NotEmpty();
     }
 }

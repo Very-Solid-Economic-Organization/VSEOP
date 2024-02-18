@@ -1,6 +1,7 @@
 ﻿namespace VSOP.Domain.DbModels.Enums;
 
-public enum ProcessedComodityType
+/// <summary>Объект описывает возможные типы для объекта обработанного товара</summary>
+public enum ProcessedCommodityType
 {
     Used = 0,
     Produced = 1
