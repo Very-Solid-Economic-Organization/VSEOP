@@ -9,7 +9,6 @@ namespace VSOP.WebApp.Client
         {
             
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddRadzenComponents();
