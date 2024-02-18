@@ -83,8 +83,15 @@ namespace VSOP.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ProcessesCount")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProcessTickrate")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<long>("ProcessesCount")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -145,6 +152,24 @@ namespace VSOP.Persistence.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Producer");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
+                {
+                    b.Property<Guid>("ProcessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProducerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastExecutionDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ProcessId", "ProducerId");
+
+                    b.HasIndex("ProducerId");
+
+                    b.ToTable("ProducerProcess");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>
@@ -312,6 +337,25 @@ namespace VSOP.Persistence.Migrations
                     b.Navigation("Region");
                 });
 
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
+                {
+                    b.HasOne("VSOP.Domain.DbModels.Producers.Process", "Process")
+                        .WithMany("ProducerProcesses")
+                        .HasForeignKey("ProcessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VSOP.Domain.DbModels.Producers.Producer", "Producer")
+                        .WithMany("ProducerProcesses")
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Process");
+
+                    b.Navigation("Producer");
+                });
+
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>
                 {
                     b.HasOne("VSOP.Domain.DbModels.Countries.Country", "Country")
@@ -351,6 +395,13 @@ namespace VSOP.Persistence.Migrations
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Process", b =>
                 {
                     b.Navigation("ProcessedCommodities");
+
+                    b.Navigation("ProducerProcesses");
+                });
+
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Producer", b =>
+                {
+                    b.Navigation("ProducerProcesses");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>

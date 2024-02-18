@@ -22,6 +22,10 @@ public abstract class Producer : Entity, IEquatable<Producer>
     /// <summary>Список процессов принадлежащих к производящему объект</summary>
     public HashSet<Process> Processes { get; protected set; } = new();
 
+    /// <summary></summary>
+    public IList<ProducerProcess> ProducerProcesses { get; set; }
+
+
     public bool Equals(Producer? other)
     {
         return Id == other?.Id;

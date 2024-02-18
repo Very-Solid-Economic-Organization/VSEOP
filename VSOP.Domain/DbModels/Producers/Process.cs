@@ -38,6 +38,8 @@ public class Process : Entity, IEquatable<Process>
     /// <summary>Список производств в которых используется данных тип производства</summary>
     public HashSet<Producer> Producers { get; private set; }
 
+    public IList<ProducerProcess> ProducerProcesses { get; set; }
+
     /// <summary>
     /// Метод создания нового процесса производства
     /// </summary>

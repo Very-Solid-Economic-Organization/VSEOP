@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -15,7 +16,9 @@ namespace VSOP.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProcessesCount = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProcessesCount = table.Column<long>(type: "bigint", nullable: false),
+                    ProcessTickrate = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,6 +208,31 @@ namespace VSOP.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProducerProcess",
+                columns: table => new
+                {
+                    ProducerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastExecutionDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProducerProcess", x => new { x.ProcessId, x.ProducerId });
+                    table.ForeignKey(
+                        name: "FK_ProducerProcess_Process_ProcessId",
+                        column: x => x.ProcessId,
+                        principalTable: "Process",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProducerProcess_Producers_ProducerId",
+                        column: x => x.ProducerId,
+                        principalTable: "Producers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Commodity_WorldId",
                 table: "Commodity",
@@ -229,6 +257,11 @@ namespace VSOP.Persistence.Migrations
                 name: "IX_ProcessProducer_ProducersId",
                 table: "ProcessProducer",
                 column: "ProducersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProducerProcess_ProducerId",
+                table: "ProducerProcess",
+                column: "ProducerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producers_RegionId",
@@ -260,6 +293,9 @@ namespace VSOP.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProcessProducer");
+
+            migrationBuilder.DropTable(
+                name: "ProducerProcess");
 
             migrationBuilder.DropTable(
                 name: "RegionStore");
