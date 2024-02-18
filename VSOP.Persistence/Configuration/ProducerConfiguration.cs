@@ -19,6 +19,8 @@ internal class ProducerConfiguration : IEntityTypeConfiguration<Producer>
         //builder.HasMany(x => x.Processes)
         //    .WithMany(x => x.Producers);
 
+        builder.Ignore(x => x.Processes);
+
         builder.ToTable("Producers");
     }
 }

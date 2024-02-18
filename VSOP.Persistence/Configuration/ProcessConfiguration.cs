@@ -15,6 +15,7 @@ internal class ProcessConfiguration : IEntityTypeConfiguration<Process>
             .HasForeignKey(p => p.ProcessId);
 
         #region Сомнительно, но Okay
+        builder.Ignore(x => x.Producers);
         builder.Ignore(x => x.CosumedCommdities);
         builder.Ignore(x => x.ProducedCommdities);
         #endregion
