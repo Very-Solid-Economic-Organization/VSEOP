@@ -52,9 +52,9 @@ public class CommoditiesController(ISender sender) : ApiController(sender)
     /// <param name="cancellationToken"></param>
     /// <response code="200">Обновленный объект Предмета Потребления</response>
     /// <response code="422">Ошибка валидации</response>
+    [HttpPut("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCommodityRequest request, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new UpdateCommodityCommand(id, request.Name), cancellationToken));

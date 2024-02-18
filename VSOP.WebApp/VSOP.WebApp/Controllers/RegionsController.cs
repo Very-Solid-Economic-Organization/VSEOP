@@ -53,6 +53,8 @@ public class RegionsController(ISender sender) : ApiController(sender)
     /// <response code="200">Обновленный объект Региона</response>
     /// <response code="422">Ошибка валидации или объект не найден по Id</response>
     [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateRegionRequest request, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new UpdateRegionCommand(id, request.Name), cancellationToken));

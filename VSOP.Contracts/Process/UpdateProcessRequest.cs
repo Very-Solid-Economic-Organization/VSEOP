@@ -1,6 +1,6 @@
 ﻿namespace VSOP.Contracts.Process;
 
-public class CreateProcessRequest
+public class UpdateProcessRequest
 {
     public uint ProcessesCount { get; set; }
 
