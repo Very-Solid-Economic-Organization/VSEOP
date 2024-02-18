@@ -34,6 +34,8 @@ public static class DependencyInjection
         services.AddScoped<IStoredCommodityRepository, StoredCommodityRepository>();
         services.AddScoped<IFactoryRepository, FactoryRepository>();
         services.AddScoped<IProcessRepository, ProcessRepository>();
+        services.AddScoped<IProducerRepository, ProducerRepository>();
+        services.AddScoped<IProcessedCommodityRepository, ProcessedCommodityRepository>();
         #endregion
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
