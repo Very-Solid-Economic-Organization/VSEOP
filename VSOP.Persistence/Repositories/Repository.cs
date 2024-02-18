@@ -26,9 +26,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns>Список всех объектов данного или null</returns>
-    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await _context.ToListAsync(cancellationToken);
+        return await _context.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     /// <summary>

@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSOP.Domain.DbModels.Producers;
-using VSOP.Domain.Primitives.Results;
 using VSOP.WebApp.Abstractions;
 
 namespace VSOP.WebApp.Controllers;

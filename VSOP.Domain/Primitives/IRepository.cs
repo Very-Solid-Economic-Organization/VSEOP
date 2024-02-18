@@ -6,7 +6,7 @@ public interface IRepository<TEntity> where TEntity : class
 {
     public Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
-    public Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+    public Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken);
 
     public Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 

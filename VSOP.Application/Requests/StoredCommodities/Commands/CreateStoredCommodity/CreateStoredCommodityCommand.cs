@@ -1,5 +1,4 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.DbModels.Regions;
 
 namespace VSOP.Application.Requests.StoredCommodities.Commands.CreateStoredCommodity;
@@ -9,4 +8,4 @@ public sealed record CreateStoredCommodityCommand(
     float quantity,
     ulong selfCost,
     ulong price,
-    Demand currentDemand) : ICommand<StoredCommodity>;
+    int currentDemand) : ICommand<StoredCommodity>;

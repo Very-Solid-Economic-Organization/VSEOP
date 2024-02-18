@@ -1,9 +1,8 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Producers;
 
-namespace VSOP.Application.Requests.Commodities.Queries.GetCommodityById
+namespace VSOP.Application.Requests.Processes.Queries.GetProcessById
 {
-    public sealed record GetProcessByIdQuery(Guid Id) : IQuery<Process>;
+    public sealed record GetProcessByIdQuery(Guid Id, bool IncludeCommodities = true) : IQuery<Process>;
 
 }
