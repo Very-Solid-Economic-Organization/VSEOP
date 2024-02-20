@@ -8,14 +8,15 @@ internal class ProducerProcessConfiguration : IEntityTypeConfiguration<ProducerP
 {
     public void Configure(EntityTypeBuilder<ProducerProcess> builder)
     {
-        builder.HasKey(pp => new { pp.ProcessId, pp.ProducerId });
+        builder.HasKey(pp => pp.Id);
 
         builder.HasOne(pp => pp.Producer)
-            .WithMany(p => p.ProducerProcesses)
+            .WithMany(p => p.Processes)
             .HasForeignKey(pp => pp.ProducerId);
 
-        //builder.HasOne(pp => pp.Process)
-        //    .WithMany(s => s.ProducerProcesses)
-        //    .HasForeignKey(sc => sc.ProcessId);
+        builder.HasOne(pp => pp.Process)
+            .WithMany()
+            .IsRequired()
+            .HasForeignKey(pp => pp.ProcessId);
     }
 }

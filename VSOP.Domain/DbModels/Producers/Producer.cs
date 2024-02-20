@@ -20,11 +20,7 @@ public abstract class Producer : Entity, IEquatable<Producer>
     public Region Region { get; protected set; }
 
     /// <summary>Список процессов принадлежащих к производящему объект</summary>
-    public HashSet<Process> Processes { get; protected set; } = new();
-
-    /// <summary></summary>
-    public IList<ProducerProcess> ProducerProcesses { get; set; }
-
+    public HashSet<ProducerProcess> Processes { get; protected set; } = new();
 
     public bool Equals(Producer? other)
     {

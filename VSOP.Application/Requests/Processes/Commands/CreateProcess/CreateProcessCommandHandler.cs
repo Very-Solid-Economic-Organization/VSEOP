@@ -21,7 +21,7 @@ namespace VSOP.Application.Requests.Processes.Commands.CreateProcess
             //if (!await _worldRepository.AnyAsync(x => x.Id == request.WorldId, cancellationToken))
             //    return Result.Failure<Commodity>(new Error($"{nameof(World)} was not found by Id - {request.WorldId}"), HttpStatusCode.UnprocessableContent);
 
-            var entity = Process.Create(request.processesCount, request.name);
+            var entity = Process.Create(request.name);
 
             await _repository.AddAsync(entity, cancellationToken);
 

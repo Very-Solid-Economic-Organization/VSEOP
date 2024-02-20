@@ -75,9 +75,6 @@ namespace VSOP.Persistence.Migrations
                     b.Property<decimal>("ProcessTickrate")
                         .HasColumnType("decimal(20,0)");
 
-                    b.Property<long>("ProcessesCount")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.ToTable("Process");
@@ -141,16 +138,25 @@ namespace VSOP.Persistence.Migrations
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
                 {
-                    b.Property<Guid>("ProcessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProducerId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastExecutionDateTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ProcessId", "ProducerId");
+                    b.Property<Guid>("ProcessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("ProcessesCount")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ProducerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProcessId");
 
                     b.HasIndex("ProducerId");
 
@@ -310,13 +316,13 @@ namespace VSOP.Persistence.Migrations
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
                 {
                     b.HasOne("VSOP.Domain.DbModels.Producers.Process", "Process")
-                        .WithMany("ProducerProcesses")
+                        .WithMany()
                         .HasForeignKey("ProcessId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VSOP.Domain.DbModels.Producers.Producer", "Producer")
-                        .WithMany("ProducerProcesses")
+                        .WithMany("Processes")
                         .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -365,13 +371,11 @@ namespace VSOP.Persistence.Migrations
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Process", b =>
                 {
                     b.Navigation("ProcessedCommodities");
-
-                    b.Navigation("ProducerProcesses");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Producer", b =>
                 {
-                    b.Navigation("ProducerProcesses");
+                    b.Navigation("Processes");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>

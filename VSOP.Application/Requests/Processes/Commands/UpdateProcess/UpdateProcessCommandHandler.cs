@@ -24,7 +24,7 @@ namespace VSOP.Application.Requests.Processes.Commands.UpdateProcess
             if (entity == null)
                 return Result.Failure<Process>(new Error(
                     $"No {nameof(Process)} were found for Id {request.Id}"), HttpStatusCode.UnprocessableContent);
-            entity.Update(request.processesCount, request.name);
+            entity.Update(request.name);
 
             _repository.Update(entity);
 

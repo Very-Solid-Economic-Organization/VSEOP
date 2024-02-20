@@ -17,7 +17,6 @@ namespace VSOP.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProcessesCount = table.Column<long>(type: "bigint", nullable: false),
                     ProcessTickrate = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
                 },
                 constraints: table =>
@@ -188,13 +187,15 @@ namespace VSOP.Persistence.Migrations
                 name: "ProducerProcess",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProducerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProcessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessesCount = table.Column<long>(type: "bigint", nullable: false),
                     LastExecutionDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProducerProcess", x => new { x.ProcessId, x.ProducerId });
+                    table.PrimaryKey("PK_ProducerProcess", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProducerProcess_Process_ProcessId",
                         column: x => x.ProcessId,
@@ -227,6 +228,11 @@ namespace VSOP.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProcessedCommodity_ProcessId",
                 table: "ProcessedCommodity",
+                column: "ProcessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProducerProcess_ProcessId",
+                table: "ProducerProcess",
                 column: "ProcessId");
 
             migrationBuilder.CreateIndex(

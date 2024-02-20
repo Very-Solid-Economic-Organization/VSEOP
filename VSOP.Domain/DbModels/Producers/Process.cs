@@ -7,9 +7,8 @@ namespace VSOP.Domain.DbModels.Producers;
 /// <summary>Базовое представление процесса производства</summary>
 public class Process : Entity, IEquatable<Process>
 {
-    private Process(Guid id, uint processesCount, string name) : base(id)
+    private Process(Guid id, string name) : base(id)
     {
-        ProcessesCount = processesCount;
         Name = name;
     }
 
@@ -29,43 +28,34 @@ public class Process : Entity, IEquatable<Process>
     public HashSet<ProcessedCommodity> ProcessedCommodities { get; private set; } = new();
     #endregion
 
-    /// <summary>Кол-во одновременно запущенных процессов данного типа</summary>
-    public uint ProcessesCount { get; private set; } = 0;
-
     /// <summary>Время затрачиваемое на производственный процесс в секундах</summary>
     public ulong ProcessTickrate { get; private set; }
-
-    /// <summary>Список производств в которых используется данных тип производства</summary>
-    public HashSet<Producer> Producers { get; private set; }
-
-    public IList<ProducerProcess> ProducerProcesses { get; set; }
 
     /// <summary>
     /// Метод создания нового процесса производства
     /// </summary>
-    /// <param name="processesCount">Кол-во одновременно запущенных процессов данного типа</param>
+    /// <param name="name">Наименование процесса производства</param>
     /// <returns>Нового объект процесса производства</returns>
     /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
-    public static Process Create(uint processesCount, string name)
+    public static Process Create(string name)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name property can't be null or empty");
 
-        return new(Guid.NewGuid(), processesCount, name);
+        return new(Guid.NewGuid(), name);
     }
 
     /// <summary>
     /// Метод изменения процесса производства
     /// </summary>
-    /// <param name="processesCount">Кол-во одновременно запущенных процессов данного типа</param>
+    /// <param name="name">Наименование процесса производства</param>
     /// <returns>Нового объект процесса производства</returns>
     /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
-    public void Update(uint processesCount, string name)
+    public void Update(string name)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name property can't be null or empty");
 
-        ProcessesCount = processesCount;
         Name = name;
     }
 
