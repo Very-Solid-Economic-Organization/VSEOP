@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VSOP.Domain.DbModels.Commodities;
-using VSOP.Domain.DbModels.Producers;
-using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Processes.ProcessedCommodities;
+using VSOP.Domain.DbModels.Regions.StoredCommodities;
 
 namespace VSOP.Persistence.Configuration;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Producers.ProducerProsesses;
 
 namespace VSOP.Persistence.Configuration;
 
@@ -11,7 +11,7 @@ internal class ProducerProcessConfiguration : IEntityTypeConfiguration<ProducerP
         builder.HasKey(pp => pp.Id);
 
         builder.HasOne(pp => pp.Producer)
-            .WithMany(p => p.Processes)
+            .WithMany(p => p.ProdProcesses)
             .HasForeignKey(pp => pp.ProducerId);
 
         builder.HasOne(pp => pp.Process)

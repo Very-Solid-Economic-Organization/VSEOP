@@ -3,7 +3,7 @@ using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Producers;
+namespace VSOP.Domain.DbModels.Processes.ProcessedCommodities;
 
 /// <summary>Объект обрабатываемого предмета потребления относящегося к производственному процессу</summary>
 public class ProcessedCommodity : Entity

@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Processes;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Producers;
+namespace VSOP.Domain.DbModels.Producers.ProducerProsesses;
 
 public class ProducerProcess : Entity
 {

@@ -42,7 +42,7 @@ public class ProcessController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Create([FromBody] CreateProcessRequest request, CancellationToken cancellationToken)
     {
-        return HandleResult(await Sender.Send(new CreateProcessCommand(request.ProcessesCount, request.Name), cancellationToken));
+        return HandleResult(await Sender.Send(new CreateProcessCommand(request.Name, request.ProcessTickrate), cancellationToken));
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class ProcessController(ISender sender) : ApiController(sender)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProcessRequest request, CancellationToken cancellationToken)
     {
-        return HandleResult(await Sender.Send(new UpdateProcessCommand(id, request.ProcessesCount, request.Name), cancellationToken));
+        return HandleResult(await Sender.Send(new UpdateProcessCommand(id, request.Name, request.ProcessTickrate), cancellationToken));
     }
 
     /// <summary>

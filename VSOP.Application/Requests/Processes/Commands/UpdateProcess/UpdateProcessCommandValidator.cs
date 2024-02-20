@@ -8,5 +8,6 @@ internal class UpdateProcessCommandValidator : AbstractValidator<UpdateProcessCo
     {
         RuleFor(x => x.Id).NotEmpty();
         RuleFor(x => x.name).NotEmpty();
+        RuleFor(x => x.processTickrate).NotEmpty();
     }
 }

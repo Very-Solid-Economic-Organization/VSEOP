@@ -1,15 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Enums;
+using VSOP.Domain.DbModels.Processes.ProcessedCommodities;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Producers;
+namespace VSOP.Domain.DbModels.Processes;
 
 /// <summary>Базовое представление процесса производства</summary>
 public class Process : Entity, IEquatable<Process>
 {
-    private Process(Guid id, string name) : base(id)
+    private Process(Guid id, string name, ulong processTickrate) : base(id)
     {
         Name = name;
+        ProcessTickrate = processTickrate;
     }
 
     /// <summary>Наименование</summary>
@@ -37,12 +39,12 @@ public class Process : Entity, IEquatable<Process>
     /// <param name="name">Наименование процесса производства</param>
     /// <returns>Нового объект процесса производства</returns>
     /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
-    public static Process Create(string name)
+    public static Process Create(string name, ulong processTickrate)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name property can't be null or empty");
 
-        return new(Guid.NewGuid(), name);
+        return new(Guid.NewGuid(), name, processTickrate);
     }
 
     /// <summary>
@@ -51,12 +53,13 @@ public class Process : Entity, IEquatable<Process>
     /// <param name="name">Наименование процесса производства</param>
     /// <returns>Нового объект процесса производства</returns>
     /// <exception cref="ValidationException">Ошибка валидации переданных параметров</exception>
-    public void Update(string name)
+    public void Update(string name, ulong processTickrate)
     {
         if (string.IsNullOrEmpty(name))
             throw new ValidationException("Name property can't be null or empty");
-
         Name = name;
+
+        ProcessTickrate = processTickrate;
     }
 
     public bool Equals(Process? other)

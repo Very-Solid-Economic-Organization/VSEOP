@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 using VSOP.Domain.Primitives.Results;
 
 namespace VSOP.Application.Requests.Processes.Queries.GetProcessById;

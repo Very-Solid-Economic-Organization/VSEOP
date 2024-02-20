@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes.ProcessedCommodities;
 
 namespace VSOP.Persistence.Configuration;
 

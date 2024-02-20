@@ -1,5 +1,5 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes.ProcessedCommodities;
 
 namespace VSOP.Application.Requests.ProcessedCommodities.Commands.CreateProcessedCommodity;
 

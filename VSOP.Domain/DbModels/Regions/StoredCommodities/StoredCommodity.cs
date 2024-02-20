@@ -3,7 +3,7 @@ using VSOP.Domain.DbModels.Commodities;
 using VSOP.Domain.DbModels.Enums;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Regions;
+namespace VSOP.Domain.DbModels.Regions.StoredCommodities;
 
 /// <summary>Объект хранимого предмета потребления</summary>
 public class StoredCommodity : Entity, IEquatable<StoredCommodity>

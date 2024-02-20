@@ -1,4 +1,4 @@
-﻿using VSOP.Domain.DbModels.Producers;
+﻿using VSOP.Domain.DbModels.Processes.ProcessedCommodities;
 
 namespace VSOP.Persistence.Repositories;
 

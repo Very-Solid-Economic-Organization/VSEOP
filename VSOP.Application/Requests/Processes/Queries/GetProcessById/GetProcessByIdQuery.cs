@@ -1,5 +1,5 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 
 namespace VSOP.Application.Requests.Processes.Queries.GetProcessById
 {

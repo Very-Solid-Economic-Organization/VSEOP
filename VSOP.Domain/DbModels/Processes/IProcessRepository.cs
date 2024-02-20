@@ -1,6 +1,6 @@
 ﻿using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Producers;
+namespace VSOP.Domain.DbModels.Processes;
 
 public interface IProcessRepository : IRepository<Process>
 {

@@ -1,4 +1,5 @@
-﻿using VSOP.Domain.DbModels.Regions;
+﻿using VSOP.Domain.DbModels.Producers.ProducerProsesses;
+using VSOP.Domain.DbModels.Regions;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Producers;
@@ -20,7 +21,7 @@ public abstract class Producer : Entity, IEquatable<Producer>
     public Region Region { get; protected set; }
 
     /// <summary>Список процессов принадлежащих к производящему объект</summary>
-    public HashSet<ProducerProcess> Processes { get; protected set; } = new();
+    public HashSet<ProducerProcess> ProdProcesses { get; protected set; } = new();
 
     public bool Equals(Producer? other)
     {

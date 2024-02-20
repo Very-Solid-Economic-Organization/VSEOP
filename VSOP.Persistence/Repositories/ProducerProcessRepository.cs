@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Producers;
-using VSOP.Domain.DbModels.Regions;
+﻿using VSOP.Domain.DbModels.Producers.ProducerProsesses;
 
 namespace VSOP.Persistence.Repositories;
 

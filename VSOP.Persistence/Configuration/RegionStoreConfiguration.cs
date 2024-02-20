@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Regions.RegionStores;
 
 namespace VSOP.Persistence.Configuration;
 

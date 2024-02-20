@@ -1,5 +1,5 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Regions.StoredCommodities;
 
 namespace VSOP.Application.Requests.StoredCommodities.Commands.UpdateStoredCommodity;
 

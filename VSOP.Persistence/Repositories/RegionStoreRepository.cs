@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Regions.RegionStores;
 
 namespace VSOP.Persistence.Repositories;
 

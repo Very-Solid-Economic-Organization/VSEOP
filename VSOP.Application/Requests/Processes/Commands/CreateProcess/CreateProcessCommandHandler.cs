@@ -1,6 +1,6 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 using VSOP.Domain.Primitives.Results;
 
 namespace VSOP.Application.Requests.Processes.Commands.CreateProcess
@@ -21,7 +21,7 @@ namespace VSOP.Application.Requests.Processes.Commands.CreateProcess
             //if (!await _worldRepository.AnyAsync(x => x.Id == request.WorldId, cancellationToken))
             //    return Result.Failure<Commodity>(new Error($"{nameof(World)} was not found by Id - {request.WorldId}"), HttpStatusCode.UnprocessableContent);
 
-            var entity = Process.Create(request.name);
+            var entity = Process.Create(request.name, request.processTickrate);
 
             await _repository.AddAsync(entity, cancellationToken);
 

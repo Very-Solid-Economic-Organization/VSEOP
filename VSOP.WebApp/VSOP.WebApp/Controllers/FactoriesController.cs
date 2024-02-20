@@ -4,7 +4,6 @@ using VSOP.Application.Requests.Factories.Commands.CreateFactory;
 using VSOP.Application.Requests.Factories.Commands.RemoveFactory;
 using VSOP.Application.Requests.Factories.Commands.UpdateFactory;
 using VSOP.Application.Requests.Factories.Queries.GetFactoryById;
-using VSOP.Application.Requests.Producers.Commands.AddProcess;
 using VSOP.Contracts.Factories;
 using VSOP.WebApp.Abstractions;
 

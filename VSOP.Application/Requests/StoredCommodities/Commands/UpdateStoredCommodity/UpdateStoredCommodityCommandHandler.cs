@@ -2,7 +2,7 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Enums;
-using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Regions.StoredCommodities;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 

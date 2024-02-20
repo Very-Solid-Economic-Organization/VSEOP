@@ -1,6 +1,10 @@
 ﻿using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 
 namespace VSOP.Application.Requests.Processes.Commands.UpdateProcess;
 
-public sealed record UpdateProcessCommand(Guid Id, uint processesCount, string name) : ICommand<Process>;
+public sealed record UpdateProcessCommand(
+    Guid Id,
+    string name,
+    ulong processTickrate) : ICommand<Process>;
+//TODO: Переделать в Nullable

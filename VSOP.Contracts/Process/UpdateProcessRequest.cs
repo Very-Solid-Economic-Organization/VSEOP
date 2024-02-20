@@ -2,7 +2,7 @@
 
 public class UpdateProcessRequest
 {
-    public uint ProcessesCount { get; set; }
-
     public string Name { get; set; }
+
+    public ulong ProcessTickrate { get; set; }
 }
