@@ -7,7 +7,7 @@ namespace VSOP.WebApp.Client
     {
         static async Task Main(string[] args)
         {
-            
+
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

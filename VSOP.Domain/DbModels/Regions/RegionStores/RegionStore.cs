@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VSOP.Domain.DbModels.Regions.StoredCommodities;
 using VSOP.Domain.Primitives;
 
-namespace VSOP.Domain.DbModels.Regions;
+namespace VSOP.Domain.DbModels.Regions.RegionStores;
 
 /// <summary>Объект регионального склада в котором находятся все доступные предметы потребления данного региона</summary>
 public class RegionStore : Entity, IEquatable<RegionStore>

@@ -72,6 +72,8 @@ public class WorldsController(ISender sender) : ApiController(sender)
     /// <response code="200">Обновленный объект Мира</response>
     /// <response code="422">Если произошла ошибка валидации параметров переданного объекта или объект был не найден по Id</response>
     [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateWorldRequest request, CancellationToken cancellationToken)
     {
         return HandleResult(await Sender.Send(new UpdateWorldCommand(id, request.Name), cancellationToken));

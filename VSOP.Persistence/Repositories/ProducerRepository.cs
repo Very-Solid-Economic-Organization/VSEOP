@@ -11,10 +11,10 @@ internal class ProducerRepository : Repository<Producer>, IProducerRepository
 
     public async Task<Producer?> GetWithProcessesByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _context.Include(x => x.Processes).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        return await _context.Include(x => x.ProdProcesses).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
     public async Task<List<Producer>> GetAllWithProcessesAsync(CancellationToken cancellationToken)
     {
-        return await _context.Include(x => x.Processes).AsNoTracking().ToListAsync(cancellationToken);
+        return await _context.Include(x => x.ProdProcesses).AsNoTracking().ToListAsync(cancellationToken);
     }
 }

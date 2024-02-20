@@ -15,7 +15,8 @@ namespace VSOP.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProcessesCount = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProcessTickrate = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,24 +183,27 @@ namespace VSOP.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProcessProducer",
+                name: "ProducerProcess",
                 columns: table => new
                 {
-                    ProcessesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProducersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProducerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProcessesCount = table.Column<long>(type: "bigint", nullable: false),
+                    LastExecutionDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcessProducer", x => new { x.ProcessesId, x.ProducersId });
+                    table.PrimaryKey("PK_ProducerProcess", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProcessProducer_Process_ProcessesId",
-                        column: x => x.ProcessesId,
+                        name: "FK_ProducerProcess_Process_ProcessId",
+                        column: x => x.ProcessId,
                         principalTable: "Process",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProcessProducer_Producers_ProducersId",
-                        column: x => x.ProducersId,
+                        name: "FK_ProducerProcess_Producers_ProducerId",
+                        column: x => x.ProducerId,
                         principalTable: "Producers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -226,9 +230,14 @@ namespace VSOP.Persistence.Migrations
                 column: "ProcessId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcessProducer_ProducersId",
-                table: "ProcessProducer",
-                column: "ProducersId");
+                name: "IX_ProducerProcess_ProcessId",
+                table: "ProducerProcess",
+                column: "ProcessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProducerProcess_ProducerId",
+                table: "ProducerProcess",
+                column: "ProducerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producers_RegionId",
@@ -259,7 +268,7 @@ namespace VSOP.Persistence.Migrations
                 name: "ProcessedCommodity");
 
             migrationBuilder.DropTable(
-                name: "ProcessProducer");
+                name: "ProducerProcess");
 
             migrationBuilder.DropTable(
                 name: "RegionStore");

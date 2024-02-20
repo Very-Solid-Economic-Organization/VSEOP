@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using VSOP.Application.Abstractions.Messaging;
-using VSOP.Domain.DbModels.Regions;
+using VSOP.Domain.DbModels.Regions.RegionStores;
 using VSOP.Domain.Primitives.Results;
 
 namespace VSOP.Application.Requests.RegionStores.Queries.GetRegionStoreById;

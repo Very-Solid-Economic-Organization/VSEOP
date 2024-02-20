@@ -2,5 +2,6 @@
 
 public class CreateProcessRequest
 {
-    public int ProcessesCount { get; set; }
+    public string Name { get; set; }
+    public ulong ProcessTickrate { get; set; }
 }

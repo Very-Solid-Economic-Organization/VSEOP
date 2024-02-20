@@ -2,7 +2,7 @@
 using VSOP.Application.Abstractions.Messaging;
 using VSOP.Application.Data;
 using VSOP.Domain.DbModels.Factories;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 using VSOP.Domain.Primitives;
 using VSOP.Domain.Primitives.Results;
 

@@ -7,6 +7,6 @@ internal class CreateProcessCommandValidator : AbstractValidator<CreateProcessCo
     public CreateProcessCommandValidator()
     {
         RuleFor(x => x.name).NotEmpty();
-        RuleFor(x => x.processesCount).NotEmpty();
+        RuleFor(x => x.processTickrate).NotEmpty();
     }
 }

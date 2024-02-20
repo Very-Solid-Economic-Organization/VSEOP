@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Processes;
 
 namespace VSOP.Persistence.Repositories;
 

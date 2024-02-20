@@ -1,4 +1,4 @@
-﻿using VSOP.Domain.DbModels.Regions;
+﻿using VSOP.Domain.DbModels.Regions.StoredCommodities;
 
 namespace VSOP.Persistence.Repositories;
 

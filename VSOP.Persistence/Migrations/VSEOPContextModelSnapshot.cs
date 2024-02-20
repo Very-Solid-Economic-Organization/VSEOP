@@ -22,21 +22,6 @@ namespace VSOP.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ProcessProducer", b =>
-                {
-                    b.Property<Guid>("ProcessesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProducersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProcessesId", "ProducersId");
-
-                    b.HasIndex("ProducersId");
-
-                    b.ToTable("ProcessProducer");
-                });
-
             modelBuilder.Entity("VSOP.Domain.DbModels.Commodities.Commodity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -83,8 +68,12 @@ namespace VSOP.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ProcessesCount")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProcessTickrate")
+                        .HasColumnType("decimal(20,0)");
 
                     b.HasKey("Id");
 
@@ -145,6 +134,33 @@ namespace VSOP.Persistence.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Producer");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastExecutionDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ProcessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("ProcessesCount")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ProducerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProcessId");
+
+                    b.HasIndex("ProducerId");
+
+                    b.ToTable("ProducerProcess");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>
@@ -245,21 +261,6 @@ namespace VSOP.Persistence.Migrations
                     b.HasDiscriminator().HasValue("Factory");
                 });
 
-            modelBuilder.Entity("ProcessProducer", b =>
-                {
-                    b.HasOne("VSOP.Domain.DbModels.Producers.Process", null)
-                        .WithMany()
-                        .HasForeignKey("ProcessesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VSOP.Domain.DbModels.Producers.Producer", null)
-                        .WithMany()
-                        .HasForeignKey("ProducersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("VSOP.Domain.DbModels.Commodities.Commodity", b =>
                 {
                     b.HasOne("VSOP.Domain.DbModels.Worlds.World", "World")
@@ -312,6 +313,25 @@ namespace VSOP.Persistence.Migrations
                     b.Navigation("Region");
                 });
 
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.ProducerProcess", b =>
+                {
+                    b.HasOne("VSOP.Domain.DbModels.Producers.Process", "Process")
+                        .WithMany()
+                        .HasForeignKey("ProcessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VSOP.Domain.DbModels.Producers.Producer", "Producer")
+                        .WithMany("Processes")
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Process");
+
+                    b.Navigation("Producer");
+                });
+
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>
                 {
                     b.HasOne("VSOP.Domain.DbModels.Countries.Country", "Country")
@@ -351,6 +371,11 @@ namespace VSOP.Persistence.Migrations
             modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Process", b =>
                 {
                     b.Navigation("ProcessedCommodities");
+                });
+
+            modelBuilder.Entity("VSOP.Domain.DbModels.Producers.Producer", b =>
+                {
+                    b.Navigation("Processes");
                 });
 
             modelBuilder.Entity("VSOP.Domain.DbModels.Regions.Region", b =>

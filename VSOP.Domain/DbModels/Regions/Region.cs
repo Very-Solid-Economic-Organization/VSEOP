@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using VSOP.Domain.DbModels.Countries;
 using VSOP.Domain.DbModels.Producers;
+using VSOP.Domain.DbModels.Regions.RegionStores;
 using VSOP.Domain.Primitives;
 
 namespace VSOP.Domain.DbModels.Regions;

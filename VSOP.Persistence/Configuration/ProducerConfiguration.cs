@@ -16,9 +16,6 @@ internal class ProducerConfiguration : IEntityTypeConfiguration<Producer>
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasMany(x => x.Processes)
-            .WithMany(x => x.Producers);
-
         builder.ToTable("Producers");
     }
 }
