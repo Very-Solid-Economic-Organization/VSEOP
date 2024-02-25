@@ -13,4 +13,8 @@
     <PackageReference Include="Radzen.Blazor" Version="4.24.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\VSOP.Domain\VSOP.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
